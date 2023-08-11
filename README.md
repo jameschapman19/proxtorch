@@ -6,12 +6,12 @@
 
 </div>
 
-`ProxTorch` is a modern Python library that provides an assortment of proximal operators built on top of PyTorch. By leveraging the power of PyTorch, `ProxTorch` is efficient, differentiable, and GPU-compatible, making it suitable for a wide range of optimization and machine learning tasks.
+`ProxTorch` is a modern Python library that provides an assortment of proximal operators built on top of PyTorch. By leveraging the power of PyTorch, `ProxTorch` is efficient and GPU-compatible, making it suitable for a wide range of optimization and machine learning tasks.
 
 ## Features
 
 - **GPU-Compatible**: Achieve faster computation speeds with CUDA support.
-- **Differentiable**: Seamlessly integrate with PyTorch-based projects, taking advantage of the autograd feature.
+- **Compatible**: Seamlessly integrate with PyTorch-based projects.
 - **Extensive Library**: From `L0`, `L1`, `L2` norms to advanced regularizations like Total Variation, Fused Lasso, and more.
 - **User-Friendly**: Easily plug-and-play into existing projects with minimal code changes.
 

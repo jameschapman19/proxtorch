@@ -21,7 +21,7 @@ Constraints, on the other hand, define feasible sets or boundaries within which 
 
 Gradient Descent, a renowned iterative technique, primarily zeroes in on the local minimum of a differentiable scalar function. It iteratively steps towards the direction signaling the steepest function descent.
 
-However, the territory gets treacherous with non-smooth functions or problems laden with constraints. Traditional gradient descent might wobble or even nosedive. This is where proximal operators and constraints shine. Coupling gradient descent with proximal methodologies gives birth to the Proximal Gradient Descent algorithm. This potent blend taps into gradient cues and problem structures (via proximal operators and constraints) to guarantee convergence and craft solutions that toe the line with constraints or non-smooth patterns.
+However, the territory gets treacherous with non-smooth functions or problems laden with constraints. This is where proximal operators and constraints shine. Coupling gradient descent with proximal methodologies gives birth to the Proximal Gradient Descent algorithm. This potent blend taps into gradient cues and problem structures (via proximal operators and constraints) to guarantee convergence and craft solutions that toe the line with constraints or non-smooth patterns.
 
 In essence, while gradient descent chalks out the direction, proximal operators and constraints ensure this trajectory respects the intrinsic problem framework.
 

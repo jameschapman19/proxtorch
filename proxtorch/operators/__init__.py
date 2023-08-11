@@ -2,15 +2,14 @@ from .l1 import L1Prox
 from .l2 import L2Prox
 from .elastic_net import ElasticNetProx
 from .group_lasso import GroupLassoProx
-from .non_negative import NonNegativeProx
-from .l0ball import L0Ball
-from .l1ball import L1Ball
+from proxtorch.constraints.non_negative import NonNegativeProx
+from proxtorch.constraints.l1ball import L1Ball
 from .tv_2d import TV_2DProx
 from .tv_3d import TV_3DProx
 from .tvl1_2d import TVL1_2DProx
 from .tvl1_3d import TVL1_3DProx
 from .frobenius import FrobeniusProx
-from .tracenorm import TraceNormProx
+from .tracenorm import TraceNormProx, NuclearNormProx
 from .fused_lasso import FusedLassoProx
 from .huber import HuberProx
 
@@ -28,6 +27,7 @@ __all__ = [
     "TVL1_3DProx",
     "FrobeniusProx",
     "TraceNormProx",
+    "NuclearNormProx",
     "FusedLassoProx",
     "HuberProx",
 ]

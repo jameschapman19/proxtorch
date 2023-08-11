@@ -1,7 +1,6 @@
 from proxtorch.base import ProxOperator
 import torch
 
-
 class TraceNormProx(ProxOperator):
     r"""
     Proximal operator for the trace norm regularization.
@@ -40,3 +39,5 @@ class TraceNormProx(ProxOperator):
             float: Trace norm regularization term.
         """
         return self.alpha * torch.sum(torch.svd(x).S)
+
+NuclearNormProx = TraceNormProx

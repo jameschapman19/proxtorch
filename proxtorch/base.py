@@ -1,5 +1,6 @@
 import torch
 
+
 class ProxOperator:
     r"""Base class for proximal operators in proxtorch.
 

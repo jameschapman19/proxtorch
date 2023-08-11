@@ -1,6 +1,7 @@
 from proxtorch.base import Constraint
 import torch
 
+
 class TraceNormConstraint(Constraint):
     r"""
     Constraint for trace norm regularization.
@@ -43,11 +44,12 @@ class TraceNormConstraint(Constraint):
         k = (cumulative_s <= self.alpha).sum()
         if k > 0:
             s[k:] = 0  # Set singular values beyond the k-th value to zero
-            scaling_factor = min(1, self.alpha / cumulative_s[k-1])
+            scaling_factor = min(1, self.alpha / cumulative_s[k - 1])
             s[:k] *= scaling_factor
         else:
             s[:] = 0
 
         return u @ torch.diag(s) @ v.T
+
 
 NuclearNormConstraint = TraceNormConstraint

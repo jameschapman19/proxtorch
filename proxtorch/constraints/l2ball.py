@@ -34,12 +34,11 @@ class L2Ball(Constraint):
 
     def __call__(self, x: torch.Tensor) -> bool:
         r"""Check if the tensor satisfies the L1 constraint.
-    
+
         Args:
             x (torch.Tensor): Input tensor.
-    
+
         Returns:
             bool: True if L1-norm of tensor is less than or equal to `s`, False otherwise.
         """
         return torch.norm(x, p=2) <= self.s
-

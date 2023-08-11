@@ -37,10 +37,10 @@ class L0Ball(Constraint):
 
     def __call__(self, x: torch.Tensor) -> bool:
         r"""Check if the tensor satisfies the L0 constraint.
-    
+
         Args:
             x (torch.Tensor): Input tensor.
-    
+
         Returns:
             bool: True if tensor has at most `s` non-zero elements, False otherwise.
         """

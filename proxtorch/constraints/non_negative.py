@@ -22,12 +22,11 @@ class NonNegativeProx(Constraint):
 
     def __call__(self, x: torch.Tensor) -> bool:
         r"""Check if the tensor satisfies the non-negative constraint.
-    
+
         Args:
             x (torch.Tensor): Input tensor.
-    
+
         Returns:
             bool: True if all elements of tensor are non-negative, False otherwise.
         """
         return torch.all(x >= 0)
-

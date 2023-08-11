@@ -39,4 +39,3 @@ class GroupLassoProx(ProxOperator):
         if self.groups is None:
             return 0.0
         return self.alpha * sum(torch.norm(x[group]) for group in self.groups)
-

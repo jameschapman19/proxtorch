@@ -1,6 +1,7 @@
 from proxtorch.base import Constraint
 import torch
 
+
 class FrobeniusConstraint(Constraint):
     r"""
     Constraint for the Frobenius norm.

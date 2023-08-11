@@ -40,4 +40,3 @@ class L1Prox(ProxOperator):
             float: The L1Prox norm value.
         """
         return torch.sum(torch.abs(x))
-

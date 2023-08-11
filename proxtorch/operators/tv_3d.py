@@ -73,6 +73,7 @@ class TV_3DProx(ProxOperator):
             torch.Tensor: Tensor after applying the proximal operation.
         """
         # Define constants and initial values
+
         tau = 1.0 / (2.0 * x.ndim)
         total_elements = torch.numel(x)
         
@@ -80,7 +81,9 @@ class TV_3DProx(ProxOperator):
         p = torch.zeros_like(self.gradient(x))
         
         E_init = None  # Initial energy value for convergence checking
-        
+        E_prev = None  # Energy value from previous iteration
+        out = None  # Output tensor
+
         # Iterative algorithm to compute the proximal mapping
         for i in range(self.max_iter):
             # Compute divergence (negative adjoint of gradient)

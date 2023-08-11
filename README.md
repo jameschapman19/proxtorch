@@ -6,20 +6,20 @@
 
 </div>
 
-`ProxTorch` is a modern Python library that provides an assortment of proximal operators built on top of PyTorch. By leveraging the power of PyTorch, `ProxTorch` is efficient and GPU-compatible, making it suitable for a wide range of optimization and machine learning tasks.
+`ProxTorch` is a modern Python library offering a diverse range of proximal operators and constraints built on PyTorch. Leveraging PyTorch's capabilities, `ProxTorch` ensures efficiency and GPU compatibility, making it indispensable for various optimization and machine learning tasks.
 
 ## Features
 
-- **GPU-Compatible**: Achieve faster computation speeds with CUDA support.
-- **Compatible**: Seamlessly integrate with PyTorch-based projects.
-- **Extensive Library**: From `L0`, `L1`, `L2` norms to advanced regularizations like Total Variation, Fused Lasso, and more.
-- **User-Friendly**: Easily plug-and-play into existing projects with minimal code changes.
+- **GPU-Compatible**: Elevate computation speeds with comprehensive CUDA support.
+- **PyTorch Harmony**: Perfectly fits within PyTorch-powered projects.
+- **Robust Library**: From basic norms like `L0`, `L1`, `L2`, `L∞` to sophisticated regularizations including Total Variation, Fused Lasso, and beyond.
+- **User Centric**: Seamlessly assimilate into your current projects requiring minimal modifications.
 
 ## Installation
 
-Install `ProxTorch` using `pip`:
+Fetch `ProxTorch` with `pip`:
 
-```
+```bash
 pip install proxtorch
 ```
 
@@ -31,40 +31,55 @@ Here's a simple example showcasing how to use `ProxTorch`:
 import torch
 from proxtorch.operators import L1
 
-# Create a tensor
+# Sample tensor
 x = torch.tensor([0.5, -1.2, 0.3, -0.4, 0.7])
 
-# Initialize L1Prox proximal operator
+# Kickstart L1Prox proximal operator
 l1_prox = L1(sigma=0.1)
 
-# Compute the value of the regularization term
+# Determine the value of the regularization component
 reg_value = l1_prox(x)
 print("Regularization Value:", reg_value)
 
-# Apply the proximal operator
+# Invoke the proximal operator
 result = l1_prox.prox(x)
 print("Prox Result:", result)
-
 ```
 
 ## Supported Proximal Operators
 
-- L0, L0 ball
-- L1, L1 ball
-- L2 (Ridge)
-- Total Variation (2D, 3D)
-- Elastic Net
-- Fused Lasso
-- Group Lasso
-- Huber
-- Trace Norm
-- Non-negative
-- Frobenius Norm
+### Regularizers
+
+- **L1**
+- **L2 (Ridge)**
+- **ElasticNet**
+- **GroupLasso**
+- **TV**: 
+  - TV_2D
+  - TV_3D 
+  - TVL1_2D 
+  - TVL1_3D
+- **Frobenius**
+- **Norms**:
+  - TraceNorm
+  - NuclearNorm
+- **FusedLasso**
+- **Huber**
+
+### Constraints
+
+- **L0Ball**
+- **L1Ball**
+- **L2Ball**
+- **L∞Ball (Infinity Norm)**
+- **Frobenius**
+- **TraceNorm**
+- **Box**
 
 
 ## Documentation
 
-Work in progress.
+Still shaping up.
 
 ## Credits
 

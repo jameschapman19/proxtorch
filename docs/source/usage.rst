@@ -1,45 +1,54 @@
 Usage
 =====
 
-Armed with an understanding of the mathematical foundation behind proximal operators and their importance in optimization, let's dive into how to utilize ProxTorch in your PyTorch-based projects.
+With the foundational knowledge of proximal operators and constraints and their roles in optimization, it's time to explore the practical application of ProxTorch in PyTorch-centric endeavors.
 
 **Step-by-Step Guide to Using ProxTorch**
 -----------------------------------------
 
-Getting started with ProxTorch is simple and intuitive. Here's a basic guide:
+Venturing into ProxTorch is a straightforward process. Here's your primer:
 
-1. **Initialize an operator**
+1. **Initialize an operator or constraint**
 
-   To utilize a proximal operator in your optimization routine, first, you need to instantiate it. For instance, to leverage the L1 proximal operator:
+   To embed a proximal operator or constraint in your optimization sequence, initiate it. For instance, for the L1 proximal operator:
 
    .. code-block:: python
 
-      from proxtorch import L1Prox
+      from proxtorch.operators import L1Prox
       l1_prox = L1Prox(sigma=0.1)
 
-   Here, `sigma` is a parameter that controls the strength of the regularization. Adjusting `sigma` will influence the solution's sparsity when using the L1 proximal operator.
-
-2. **Apply the operator**
-
-   Once you've initialized the desired proximal operator, apply it to a tensor. This "proximal step" will push the tensor closer to the minimizer of the associated function:
+   Meanwhile, for constraints like the L1Ball:
 
    .. code-block:: python
 
-      result = l1_prox.prox(some_tensor)
+      from proxtorch.constraints import L1Ball
+      l1_constraint = L1Ball(radius=0.5)
 
-   The result is a tensor that has undergone the proximal transformation based on the L1 regularizer.
+   In the L1 proximal operator, `sigma` tweaks the regularization strength. A tweak in `sigma` modifies the sparsity of the solution under the L1 proximal operator. For the L1Ball constraint, `radius` defines the feasible set's boundary.
 
-3. **Evaluate the regularization term**
+2. **Apply the operator or enforce the constraint**
 
-   Beyond applying the proximal transformation, you can also assess the value of the regularization term for a given tensor using the `__call__` method:
+   Having initialized your chosen proximal operator or constraint, apply it to a tensor. This step either nudges the tensor closer to the function's minimizer (for operators) or ensures it abides by the defined constraint:
+
+   .. code-block:: python
+
+      result_operator = l1_prox.prox(some_tensor)
+      result_constraint = l1_constraint.prox(some_tensor)
+
+   The `result_operator` tensor has felt the influence of the L1 regularizer, while the `result_constraint` tensor adheres to the L1Ball constraint.
+
+3. **Assess the regularization or constraint term**
+
+   Beyond the application phase, one can also gauge the value of the regularization term or constraint penalty for any tensor via the `__call__` method:
 
    .. code-block:: python
 
       regularization_value = l1_prox(some_tensor)
+      constraint_penalty = l1_constraint(some_tensor)
 
-   This will provide you with the regularization value associated with the tensor for the specific proximal operator.
+   This yields the regularization value or penalty related to the tensor for the chosen proximal operator or constraint, respectively.
 
-**Expanding Your Horizons**
----------------------------
+**Broadening Your Scope**
+-------------------------
 
-ProxTorch offers a rich library of proximal operators beyond the L1 operator, suitable for various optimization challenges. To explore the full capabilities and available operators, refer to the API Reference. As you delve deeper, you'll find tools tailored for specific problem structures, enabling you to harness the power of proximal methods in diverse optimization landscapes.
+ProxTorch flaunts a comprehensive library of proximal operators and constraints, fit for diverse optimization riddles. Dive into the API Reference to uncover its full prowess. As you navigate, you'll encounter tools designed for nuanced problem architectures, enabling you to leverage the might of proximal strategies across varied optimization scenarios.

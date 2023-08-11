@@ -2,8 +2,6 @@ from .l1 import L1Prox
 from .l2 import L2Prox
 from .elastic_net import ElasticNetProx
 from .group_lasso import GroupLassoProx
-from proxtorch.constraints.non_negative import NonNegativeProx
-from proxtorch.constraints.l1ball import L1Ball
 from .tv_2d import TV_2DProx
 from .tv_3d import TV_3DProx
 from .tvl1_2d import TVL1_2DProx
@@ -18,9 +16,6 @@ __all__ = [
     "L2Prox",
     "ElasticNetProx",
     "GroupLassoProx",
-    "NonNegativeProx",
-    "L0Ball",
-    "L1Ball",
     "TV_2DProx",
     "TV_3DProx",
     "TVL1_2DProx",

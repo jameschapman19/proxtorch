@@ -3,29 +3,31 @@ Introduction
 
 Welcome to the documentation of ProxTorch!
 
-ProxTorch is a cutting-edge library that provides a suite of proximal operators, fundamental building blocks in the realm of optimization, especially for problems with non-smooth regularization terms.
+ProxTorch is a state-of-the-art library that furnishes an array of proximal operators and constraints, pivotal components in the world of optimization, especially for challenges infused with non-smooth regularization terms or specific constraints.
 
-**What are Proximal Operators?**
----------------------------------
+**What are Proximal Operators and Constraints?**
+-------------------------------------------------
 
-Mathematically, given a convex function \( f: \mathbb{R}^n \to \mathbb{R} \cup \{ +\infty \} \), the proximal operator of \( f \) is defined as:
+Mathematically, for a convex function \( f: \mathbb{R}^n \to \mathbb{R} \cup \{ +\infty \} \), the proximal operator of \( f \) is articulated as:
 
 \[ \text{prox}_f(v) = \arg \min_x \left\{ f(x) + \frac{1}{2} \| x - v \|_2^2 \right\} \]
 
-In simple terms, the proximal operator is a tool that takes an input vector \( v \) and returns a vector that is closer to the minimizer of \( f \). The operator effectively "pushes" \( v \) closer to the region where \( f \) is small.
+Simplistically, the proximal operator is a mechanism that ingests an input vector \( v \) and returns a vector that edges closer to the minimizer of \( f \). This operator adeptly "nudges" \( v \) towards zones where \( f \) dwindles.
 
-**How Do Proximal Operators Enhance Gradient Descent?**
--------------------------------------------------------
+Constraints, on the other hand, define feasible sets or boundaries within which solutions must reside. They can either be hard constraints, ensuring solutions never breach the set boundaries, or soft constraints, incurring penalties for violations.
 
-Gradient Descent is a popular iterative method used to find the local minimum of a differentiable scalar function. The idea is to take repeated steps in the direction of the steepest decrease of the function.
+**How Do Proximal Operators and Constraints Bolster Gradient Descent?**
+----------------------------------------------------------------------
 
-When dealing with non-smooth functions or problems with constraints, the conventional gradient descent can be ill-behaved or even diverge. Proximal operators come to the rescue in these cases. By combining gradient descent with proximal operations, we obtain the Proximal Gradient Descent method. This hybrid method leverages the strength of gradient information and the structure of the problem (via proximal operators) to ensure convergence and find solutions that respect constraints or non-smooth structures.
+Gradient Descent, a renowned iterative technique, primarily zeroes in on the local minimum of a differentiable scalar function. It iteratively steps towards the direction signaling the steepest function descent.
 
-In other words, while gradient descent provides the direction to move, proximal operators ensure that this movement adheres to the inherent structure or constraints of the problem.
+However, the territory gets treacherous with non-smooth functions or problems laden with constraints. Traditional gradient descent might wobble or even nosedive. This is where proximal operators and constraints shine. Coupling gradient descent with proximal methodologies gives birth to the Proximal Gradient Descent algorithm. This potent blend taps into gradient cues and problem structures (via proximal operators and constraints) to guarantee convergence and craft solutions that toe the line with constraints or non-smooth patterns.
+
+In essence, while gradient descent chalks out the direction, proximal operators and constraints ensure this trajectory respects the intrinsic problem framework.
 
 **Why ProxTorch on PyTorch?**
 ------------------------------
 
-PyTorch is a leading framework designed for gradient-based optimization in deep learning. However, as the boundaries between traditional optimization problems and deep learning blur, there's an increasing need for sophisticated optimization tools within the PyTorch ecosystem.
+PyTorch, a frontrunner in the gradient-optimization realm of deep learning, often grapples with the blurring lines between quintessential optimization predicaments and deep learning nuances. This necessitates more intricate optimization arsenals within the PyTorch sphere.
 
-With ProxTorch, researchers and developers can seamlessly integrate advanced optimization techniques into their PyTorch-based machine learning workflows. Whether you're solving a traditional convex optimization problem, training a neural network with custom regularizers, or anything in between, ProxTorch provides the necessary tools, all with the familiarity and flexibility of PyTorch.
+Enter ProxTorch. With it, both researchers and aficionados can meld advanced optimization stratagems into their PyTorch-driven machine learning blueprints. Whether it's deciphering a classic convex optimization riddle, nurturing a neural network with bespoke regularizers, or straddling anything in between, ProxTorch is your go-to toolkit, drenched in the comfort and adaptability of PyTorch.

@@ -58,6 +58,7 @@ from proxtorch.operators import L1Prox
 
 seed_everything(42)
 
+
 class LassoRegression(pl.LightningModule):
     def __init__(self, input_size, lasso_param):
         super(LassoRegression, self).__init__()

@@ -3,6 +3,7 @@ import torch
 from proxtorch.operators import L1Prox
 from proxtorch.constraints import L1Ball
 
+
 def test_l1():
     l1_op = L1Prox(sigma=2.0)
     x = torch.tensor([1.0, 3.0, -0.5, -2.5])
@@ -16,7 +17,6 @@ def test_l1():
     val = l1_op(x)
     expected_val = 14
     assert val == expected_val
-
 
 
 def test_l1_ball():

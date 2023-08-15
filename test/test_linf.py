@@ -1,6 +1,7 @@
 from proxtorch.constraints import LInfinityBall
 import torch
 
+
 def test_linf_ball():
     linf_ball = LInfinityBall(s=2)
     x = torch.tensor([1.0, 3.0, -0.5, -2.5])

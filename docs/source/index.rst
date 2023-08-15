@@ -9,31 +9,37 @@ Unleashing the power of proximal operators, seamlessly integrated with PyTorch.
 Table of Contents
 -----------------
 
-📘 **User Guide**
+
 .. toctree::
    :maxdepth: 2
+   :caption: 📘 **User Guide**
 
-   * Introduction
-   * Installation
-   * Usage
+   introduction
+   installation
+   usage
 
-🎨 **Examples**
+
 .. toctree::
    :maxdepth: 2
+   :caption: 📚 **Tutorials**
 
-   * Explore examples
+   auto_examples/index
 
-📖 **API Reference**
+
 .. toctree::
    :maxdepth: 1
+   :caption: 📖 **API Reference**
 
-   * Detailed API listing
+   api_reference
 
-💡 **Additional Information**
+
 .. toctree::
    :maxdepth: 2
+   :caption: 📝 **Contributing**
 
-   * Contributing to ProxTorch
+   developer_info/contribute
+   developer_info/license
+
 
 Useful Links
 ------------

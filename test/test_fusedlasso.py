@@ -9,7 +9,6 @@ def test_fusedlassoprox():
     x = torch.tensor([-1.0, 2.0, 0.5, 0.0, -0.2])
 
     result = prox.prox(x, 1)
-
     # Expected result is a sequence where differences between consecutive elements
     # have been shrunk due to the fused lasso penalty.
     # Since this is a non-trivial operation, the exact expected values would depend

@@ -22,7 +22,7 @@ Contents:
    auto_examples/index
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Reference:
 
    api_reference

@@ -5,3 +5,5 @@ This section provides an exhaustive documentation of the functions, classes, and
    :toctree: _autosummary
 
     proxtorch.operators
+    proxtorch.constraints
+

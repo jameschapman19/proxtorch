@@ -13,7 +13,6 @@ def test_tracenormprox():
     assert torch.trace(result) <= torch.trace(x)
 
 
-
 def test_tracenormconstraint():
     alpha = 2.0
     constraint = TraceNormConstraint(alpha=alpha)

@@ -47,5 +47,4 @@ def test_total_variation_3d_prox():
     # plt.imshow(prox_result[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
     # plt.title("Prox Result Slice")
     # plt.show()
-    #
     # print("Plotting prox_result and original image slice...")

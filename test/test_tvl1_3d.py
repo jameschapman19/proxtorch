@@ -1,5 +1,4 @@
 import torch
-import matplotlib.pyplot as plt
 
 from proxtorch.operators import TVL1_3DProx
 

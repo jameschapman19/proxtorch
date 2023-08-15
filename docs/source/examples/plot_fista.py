@@ -20,7 +20,9 @@ from proxtorch.operators import L1Prox
 import torch.optim as optim
 
 # Create synthetic data
-X, y, coef = make_regression(n_samples=100, n_features=20, noise=0.1, coef=True, random_state=42)
+X, y, coef = make_regression(
+    n_samples=100, n_features=20, noise=0.1, coef=True, random_state=42
+)
 X, y = torch.tensor(X, dtype=torch.float32), torch.tensor(y, dtype=torch.float32)
 
 # Parameters

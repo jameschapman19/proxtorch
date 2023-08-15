@@ -85,7 +85,6 @@ class LassoRegression(pl.LightningModule):
                         param.data, self.trainer.optimizers[0].param_groups[0]["lr"]
                     )
 
-
     def configure_optimizers(self):
         optimizer = optim.SGD(self.parameters(), lr=0.01)
         return optimizer

@@ -54,15 +54,19 @@ class RobustPCA(pl.LightningModule):
         M = batch[0]
         # change lr to 1/(maximum absolute value of M)
         self.trainer.optimizers[0].param_groups[0]["lr"] = 1 / torch.abs(M).max()
-        loss = torch.norm(M - self.forward(M), 'fro')
+        loss = torch.norm(M - self.forward(M), "fro")
         self.log("train_loss", loss)
         return loss
 
     def on_train_batch_end(self, outputs, batch, batch_idx: int) -> None:
         # Proximal updates
         with torch.no_grad():
-            self.L.data = self.trace_norm_prox.prox(self.L.data, tau=self.trainer.optimizers[0].param_groups[0]["lr"])
-            self.S.data = self.l1_prox.prox(self.S.data, tau=self.trainer.optimizers[0].param_groups[0]["lr"])
+            self.L.data = self.trace_norm_prox.prox(
+                self.L.data, tau=self.trainer.optimizers[0].param_groups[0]["lr"]
+            )
+            self.S.data = self.l1_prox.prox(
+                self.S.data, tau=self.trainer.optimizers[0].param_groups[0]["lr"]
+            )
         self.log("trace_norm", self.trace_norm_prox(self.L.data))
         self.log("l1_norm", self.l1_prox(self.S.data))
 

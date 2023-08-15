@@ -10,7 +10,7 @@ def test_prox():
     operator = GroupLassoProx(lambda_, group_sizes)
     result = operator.prox(x, 1.0)
 
-    expected_result = torch.tensor([0.3,0.4,0.0,0.0,0.0], dtype=torch.float32)
+    expected_result = torch.tensor([0.3, 0.4, 0.0, 0.0, 0.0], dtype=torch.float32)
 
     assert torch.allclose(result, expected_result, atol=1e-4)
 

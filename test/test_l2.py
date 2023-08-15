@@ -20,3 +20,12 @@ def test_l2ball():
     result = constraint.prox(x)
     # check if the norm of the result is less than or equal to alpha
     assert torch.norm(result) <= alpha
+
+    # test call method
+    val = constraint(x)
+    expected_val = False
+    assert val == expected_val
+
+    val = constraint(result)
+    expected_val = True
+    assert val == expected_val

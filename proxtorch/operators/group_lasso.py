@@ -1,41 +1,61 @@
-from torch import Tensor
+import torch
 
 from proxtorch.base import ProxOperator
-import torch
 
 
 class GroupLassoProx(ProxOperator):
-    r"""Proximal operator for the Group Lasso."""
-
-    def __init__(self, alpha: float = 1.0, groups: list = None):
-        super().__init__()
-        self.alpha = alpha
-        self.groups = groups
-
-    def prox(self, x: Tensor, tau: float) -> Tensor:
+    def __init__(self, lambda_: float, group_sizes: list):
         r"""
-        Apply the proximal operation for Group Lasso.
+        Initialize the GroupLassoProx operator.
 
         Args:
-            x (Tensor): Input tensor.
-            tau (float): Proximal step size.
+            lambda_ (float): Group Lasso regularization parameter.
+            group_sizes (list): List containing the sizes of each group.
+        """
+        super(GroupLassoProx, self).__init__()
+        self.lambda_ = lambda_
+        self.group_sizes = group_sizes
+
+    def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
+        r"""Proximal mapping of the Group Lasso operator.
+
+        Args:
+            x (torch.Tensor): Input tensor.
+            tau (float): Proximal parameter.
 
         Returns:
-            Tensor: Result after applying the group lasso operation.
+            torch.Tensor: Result of the proximal mapping.
         """
-        if self.groups is None:
-            return x
-        for group in self.groups:
-            norm_group = torch.norm(x[group])
-            x[group] = (
-                torch.clamp(norm_group - self.alpha * tau, min=0)
-                * x[group]
-                / (norm_group + 1e-10)
-            )
-        return x
+        start = 0
+        result = torch.zeros_like(x)
 
-    def __call__(self, x: Tensor) -> float:
-        r"""Compute the Group Lasso penalty for a given input tensor."""
-        if self.groups is None:
-            return 0.0
-        return self.alpha * sum(torch.norm(x[group]) for group in self.groups)
+        for size in self.group_sizes:
+            end = start + size
+            group_norm = torch.norm(x[start:end], p=2)
+            if group_norm > 0:
+                multiplier = max(1 - self.lambda_ * tau / group_norm, 0)
+                result[start:end] = multiplier * x[start:end]
+            start = end
+
+        return result
+
+    def __call__(self, x: torch.Tensor) -> torch.Tensor:
+        r"""Function call to evaluate the Group Lasso penalty.
+
+        Args:
+            x (torch.Tensor): Input tensor.
+
+        Returns:
+            torch.Tensor: Result of the Group Lasso penalty.
+        """
+        penalty = 0.0
+        start = 0
+
+        for size in self.group_sizes:
+            end = start + size
+            penalty += torch.norm(x[start:end], p=2)
+            start = end
+
+        return self.lambda_ * penalty
+
+

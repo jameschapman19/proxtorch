@@ -53,8 +53,10 @@ import numpy as np
 from sklearn.linear_model import Lasso
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
+from pytorch_lightning import seed_everything
 from proxtorch.operators import L1Prox
 
+seed_everything(42)
 
 class LassoRegression(pl.LightningModule):
     def __init__(self, input_size, lasso_param):

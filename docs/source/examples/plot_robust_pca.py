@@ -29,7 +29,7 @@ Dependencies:
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
 import torch
-from lightning import seed_everything
+from pytorch_lightning import seed_everything
 from torch.utils.data import DataLoader, Dataset
 
 from proxtorch.operators import L1Prox, TraceNormProx

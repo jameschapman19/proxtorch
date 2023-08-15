@@ -12,7 +12,7 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: 📘 **User Guide**
+   :caption: 📘 User Guide
 
    introduction
    installation
@@ -21,21 +21,21 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: 📚 **Tutorials**
+   :caption: 📚 Tutorials
 
    auto_examples/index
 
 
 .. toctree::
    :maxdepth: 1
-   :caption: 📖 **API Reference**
+   :caption: 📖 API Reference
 
    api_reference
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: 📝 **Contributing**
+   :caption: 📝 Contributing
 
    developer_info/contribute
    developer_info/license

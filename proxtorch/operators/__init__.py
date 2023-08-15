@@ -1,3 +1,4 @@
+from .l0 import L0Prox
 from .l1 import L1Prox
 from .l2 import L2Prox
 from .elastic_net import ElasticNetProx
@@ -10,15 +11,13 @@ from .frobenius import FrobeniusProx
 from .tracenorm import TraceNormProx, NuclearNormProx
 from .fused_lasso import FusedLassoProx
 from .huber import HuberProx
+from .dummy import DummyProx
 
 __all__ = [
     "L1Prox",
     "L2Prox",
     "ElasticNetProx",
     "GroupLassoProx",
-    "NonNegativeProx",
-    "L0Ball",
-    "L1Ball",
     "TV_2DProx",
     "TV_3DProx",
     "TVL1_2DProx",
@@ -28,4 +27,6 @@ __all__ = [
     "NuclearNormProx",
     "FusedLassoProx",
     "HuberProx",
+    "L0Prox",
+    "DummyProx",
 ]

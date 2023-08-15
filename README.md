@@ -7,7 +7,7 @@
 **Unleashing Proximal Gradient Descent on PyTorch** 🚀
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5748062.svg)](https://doi.org/10.5281/zenodo.4382739)
-[![codecov](https://codecov.io/gh/jameschapman19/ProxTorch/branch/main/graph/badge.svg?token=JHG9VUB0L8)](https://codecov.io/gh/jameschapman19/ProxTorch)
+[![codecov](https://codecov.io/gh/jameschapman19/ProxTorch/graph/badge.svg?token=909RDXcEZK)](https://codecov.io/gh/jameschapman19/ProxTorch)
 [![version](https://img.shields.io/pypi/v/ProxTorch)](https://pypi.org/project/ProxTorch/)
 [![downloads](https://img.shields.io/pypi/dm/ProxTorch)](https://pypi.org/project/ProxTorch/)
 

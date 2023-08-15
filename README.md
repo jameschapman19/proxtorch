@@ -1,6 +1,6 @@
 <div align="center">
 
-![ProxTorch Logo](docs/source/proxtorch-logo.jpg)
+<img src="docs/source/proxtorch-logo.jpg" alt="ProxTorch Logo" width="200"/>
 
 # ProxTorch 
 

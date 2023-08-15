@@ -2,41 +2,43 @@
 ProxTorch Documentation
 ========================
 
-Welcome to the ProxTorch documentation! ProxTorch is a library providing a collection of proximal operators for PyTorch.
+Welcome to ProxTorch! 🚀
+--------------------------
+Unleashing the power of proximal operators, seamlessly integrated with PyTorch.
 
-Contents:
----------
+Table of Contents
+-----------------
 
+📘 **User Guide**
 .. toctree::
    :maxdepth: 2
-   :caption: User Guide:
 
-   introduction
-   installation
-   usage
+   * Introduction
+   * Installation
+   * Usage
 
+🎨 **Examples**
 .. toctree::
    :maxdepth: 2
-   :caption: Examples
 
-   auto_examples/index
+   * Explore examples
 
+📖 **API Reference**
 .. toctree::
    :maxdepth: 1
-   :caption: Reference:
 
-   api_reference
+   * Detailed API listing
 
+💡 **Additional Information**
 .. toctree::
    :maxdepth: 2
-   :caption: Additional Info:
 
-   contributing
+   * Contributing to ProxTorch
 
-Indices and tables
-------------------
+Useful Links
+------------
+* :ref:`General Index <genindex>`
+* :ref:`Module Index <modindex>`
+* :ref:`Search <search>`
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+Let's elevate your deep learning operations with ProxTorch!

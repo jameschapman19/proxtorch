@@ -73,4 +73,4 @@ autosummary_generate = True
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
-html_logo = "proxtorch-logo2.jpg"
+html_logo = "proxtorch-logo.jpg"

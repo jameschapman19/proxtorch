@@ -35,18 +35,18 @@ def test_total_variation_2d_prox():
 
     print("All tests passed!")
 
-    # Make a plot of prox_result to convince yourself that it is a smoothed version of x
-    import matplotlib.pyplot as plt
-
-    plt.imshow(x.cpu().numpy())
-    # label
-    plt.title("Original Image")
-    plt.show()
-    plt.imshow(prox_result.cpu().numpy())
-    # label
-    plt.title("Prox Result")
-    plt.show()
-    print("Plotting prox_result and original image...")
+    # # Make a plot of prox_result to convince yourself that it is a smoothed version of x
+    # import matplotlib.pyplot as plt
+    #
+    # plt.imshow(x.cpu().numpy())
+    # # label
+    # plt.title("Original Image")
+    # plt.show()
+    # plt.imshow(prox_result.cpu().numpy())
+    # # label
+    # plt.title("Prox Result")
+    # plt.show()
+    # print("Plotting prox_result and original image...")
 
 
 # test that zero is returned when x is zero

@@ -68,7 +68,7 @@ print("Prox Result:", result)
 
 ## 📖 **Documentation**
 
-Work in progress. Stay tuned!
+Explore the comprehensive documentation on [Read the Docs](https://proxtorch.readthedocs.io/en/latest/).
 
 ## 🙌 **Credits**
 

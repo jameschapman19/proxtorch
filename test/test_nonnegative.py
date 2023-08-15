@@ -1,10 +1,10 @@
 import torch
 
-from proxtorch.operators import NonNegativeProx
+from proxtorch.constraints import NonNegativeConstraint
 
 
 def test_nonnegativeprox():
-    prox = NonNegativeProx()
+    prox = NonNegativeConstraint()
     x = torch.tensor([-1.0, 0.0, 1.0, 2.0])
     result = prox.prox(x, 1)
 

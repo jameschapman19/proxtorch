@@ -1,6 +1,6 @@
 import torch
 
-from proxtorch.operators import L1Ball
+from proxtorch.constraints import L1Ball
 
 
 def test_L1Ball():

@@ -58,4 +58,3 @@ def test_zero():
     print("Zero test passed!")
 
 
-test_total_variation_2d_prox()

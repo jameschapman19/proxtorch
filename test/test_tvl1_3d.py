@@ -25,27 +25,27 @@ def test_total_variation_3d_prox():
 
     print("All tests passed!")
 
-    # Make a plot of prox_result to convince yourself that it is a smoothed version of x
-    # For 3D data, you might want to just visualize a slice for simplicity
-    slice_idx = p // 2  # mid slice
-
-    vmin = 0
-    vmax = 1
-
-    plt.imshow(x[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
-    plt.title("Original Image Slice")
-    plt.show()
-
-    plt.imshow(x_noised[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
-    plt.title("Noisy Image Slice")
-    plt.show()
-
-    plt.imshow(prox_result[slice_idx - 1].cpu().numpy(), vmin=vmin, vmax=vmax)
-    plt.title("Prox Result Slice")
-    plt.show()
-
-    plt.imshow(prox_result[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
-    plt.title("Prox Result Slice")
-    plt.show()
-
-    print("Plotting prox_result and original image slice...")
+    # # Make a plot of prox_result to convince yourself that it is a smoothed version of x
+    # # For 3D data, you might want to just visualize a slice for simplicity
+    # slice_idx = p // 2  # mid slice
+    #
+    # vmin = 0
+    # vmax = 1
+    #
+    # plt.imshow(x[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
+    # plt.title("Original Image Slice")
+    # plt.show()
+    #
+    # plt.imshow(x_noised[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
+    # plt.title("Noisy Image Slice")
+    # plt.show()
+    #
+    # plt.imshow(prox_result[slice_idx - 1].cpu().numpy(), vmin=vmin, vmax=vmax)
+    # plt.title("Prox Result Slice")
+    # plt.show()
+    #
+    # plt.imshow(prox_result[slice_idx].cpu().numpy(), vmin=vmin, vmax=vmax)
+    # plt.title("Prox Result Slice")
+    # plt.show()
+    #
+    # print("Plotting prox_result and original image slice...")

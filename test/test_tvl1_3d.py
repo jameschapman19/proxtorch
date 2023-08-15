@@ -28,7 +28,6 @@ def test_total_variation_3d_prox():
     # # Make a plot of prox_result to convince yourself that it is a smoothed version of x
     # # For 3D data, you might want to just visualize a slice for simplicity
     # slice_idx = p // 2  # mid slice
-    #
     # vmin = 0
     # vmax = 1
     #

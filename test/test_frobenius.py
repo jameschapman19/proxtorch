@@ -12,6 +12,7 @@ def test_matrixfrobeniusprox():
     expected = x / (1.0 + alpha)
     assert torch.allclose(result, expected)
 
+
 def test_matrixfrobeniusconstraint():
     alpha = 0.1
     constraint = FrobeniusConstraint(alpha=alpha)
@@ -19,4 +20,3 @@ def test_matrixfrobeniusconstraint():
     result = constraint.prox(x)
     expected = x / (1.0 + alpha)
     assert torch.allclose(result, expected)
-

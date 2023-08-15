@@ -18,6 +18,7 @@ def test_l0():
     expected_val = 2  # 3 values > threshold
     assert val == expected_val
 
+
 def test_l0_ball():
     l0_ball = L0Ball(s=2)
     x = torch.tensor([1.0, 3.0, -0.5, -2.5])

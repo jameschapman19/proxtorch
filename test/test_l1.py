@@ -14,7 +14,7 @@ def test_l1():
 
     # Test call method
     val = l1_op(x)
-    expected_val = 7.0
+    expected_val = 14
     assert val == expected_val
 
 

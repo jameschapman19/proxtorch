@@ -10,3 +10,14 @@ def test_nonnegativeconstraint():
     expected = torch.tensor([[0.0, 2.0], [3.0, 4.0]])
     assert torch.allclose(result, expected)
     print("Non-negative constraint test passed!")
+
+    # test call method
+    val = constraint(x)
+    expected_val = False
+
+    assert val == expected_val
+
+    val = constraint(result)
+    expected_val = True
+
+    assert val == expected_val

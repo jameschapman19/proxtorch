@@ -56,5 +56,3 @@ def test_zero():
     x = torch.zeros(10, 10).to(device)
     assert torch.all(tv.prox(x, 1.0) == 0)
     print("Zero test passed!")
-
-

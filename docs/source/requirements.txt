@@ -1,3 +1,7 @@
 torch
 matplotlib
 scikit-learn
+sphinx-autodoc-typehints
+sphinx-gallery
+sphinx_rtd_theme==1.2.0
+pytorch-lightning

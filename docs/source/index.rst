@@ -1,6 +1,6 @@
 ========================
 ProxTorch Documentation
-=========================
+========================
 
 Welcome to the ProxTorch documentation! ProxTorch is a library providing a collection of proximal operators for PyTorch.
 

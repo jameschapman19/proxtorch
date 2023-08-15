@@ -57,5 +57,3 @@ class GroupLassoProx(ProxOperator):
             start = end
 
         return self.lambda_ * penalty
-
-

@@ -1,8 +1,10 @@
 <div align="center">
 
-<img src="docs/source/proxtorch-logo.jpg" alt="drawing" width="200"/>
+![ProxTorch Logo](docs/source/proxtorch-logo.jpg)
 
-# ProxTorch
+# ProxTorch 
+
+**Unleashing Proximal Gradient Descent on PyTorch** 🚀
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5748062.svg)](https://doi.org/10.5281/zenodo.4382739)
 [![codecov](https://codecov.io/gh/jameschapman19/ProxTorch/branch/main/graph/badge.svg?token=JHG9VUB0L8)](https://codecov.io/gh/jameschapman19/ProxTorch)
@@ -11,94 +13,77 @@
 
 </div>
 
-`ProxTorch` is a modern Python library offering a diverse range of proximal operators and constraints built on PyTorch. Leveraging PyTorch's capabilities, `ProxTorch` ensures efficiency and GPU compatibility, making it indispensable for various optimization and machine learning tasks.
+🔍 **What is ProxTorch?**  
+Dive into a rich realm of proximal operators and constraints with `ProxTorch`, a state-of-the-art Python library crafted on PyTorch. Whether it's optimization challenges or the complexities of machine learning, `ProxTorch` is designed for speed, efficiency, and seamless GPU integration.
 
-## Features
+## ✨ **Features**
 
-- **GPU-Compatible**: Elevate computation speeds with comprehensive CUDA support.
-- **PyTorch Harmony**: Perfectly fits within PyTorch-powered projects.
-- **Robust Library**: From basic norms like `L0`, `L1`, `L2`, `L∞` to sophisticated regularizations including Total Variation, Fused Lasso, and beyond.
-- **User Centric**: Seamlessly assimilate into your current projects requiring minimal modifications.
+- **🚀 GPU-Boosted**: Experience lightning-fast computations with extensive CUDA support.
+- **🔥 PyTorch Synergy**: Naturally integrates with all your PyTorch endeavours.
+- **📚 Expansive Library**: From elemental norms (`L0`, `L1`, `L2`, `L∞`) to advanced regularizations like Total Variation and Fused Lasso.
+- **🤝 User-Friendly**: Jump right in! Intuitive design means minimal disruptions to your existing projects.
 
-## Installation
+## 🛠 **Installation**
 
-Fetch `ProxTorch` with `pip`:
+Getting started with `ProxTorch` is a breeze:
 
 ```bash
 pip install proxtorch
 ```
 
-## Quick Start
+## 🚀 **Quick Start**
 
-Here's a simple example showcasing how to use `ProxTorch`:
+Dive in with this straightforward example:
 
 ```python
 import torch
 from proxtorch.operators import L1
 
-# Sample tensor
+# Define a sample tensor
 x = torch.tensor([0.5, -1.2, 0.3, -0.4, 0.7])
 
-# Kickstart L1Prox proximal operator
+# Initialize the L1Prox proximal operator
 l1_prox = L1(sigma=0.1)
 
-# Determine the value of the regularization component
+# Compute the regularization component value
 reg_value = l1_prox(x)
 print("Regularization Value:", reg_value)
 
-# Invoke the proximal operator
+# Apply the proximal operator
 result = l1_prox.prox(x)
 print("Prox Result:", result)
 ```
 
-## Supported Proximal Operators
+## 📜 **Diverse Proximal Operators**
 
-### Regularizers
+### **Regularizers**
 
-- **L1**
-- **L2 (Ridge)**
-- **ElasticNet**
-- **GroupLasso**
-- **TV**: 
-  - TV_2D
-  - TV_3D 
-  - TVL1_2D 
-  - TVL1_3D
-- **Frobenius**
-- **Norms**:
-  - TraceNorm
-  - NuclearNorm
-- **FusedLasso**
-- **Huber**
+- **L1**, **L2 (Ridge)**, **ElasticNet**, **GroupLasso**, **TV** (includes TV_2D, TV_3D, TVL1_2D, TVL1_3D), **Frobenius**  
+- **Norms**: TraceNorm, NuclearNorm
+- **FusedLasso**, **Huber**
 
-### Constraints
+### **Constraints**
 
-- **L0Ball**
-- **L1Ball**
-- **L2Ball**
-- **L∞Ball (Infinity Norm)**
-- **Frobenius**
-- **TraceNorm**
-- **Box**
+- **L0Ball**, **L1Ball**, **L2Ball**, **L∞Ball (Infinity Norm)**, **Frobenius**, **TraceNorm**, **Box**
 
+## 📖 **Documentation**
 
-## Documentation
+Work in progress. Stay tuned!
 
-Still shaping up.
+## 🙌 **Credits**
 
-## Credits
-
-This work is inspired by the following projects:
+`ProxTorch` stands on the shoulders of giants:
 
 - [pyproximal](https://github.com/PyLops/pyproximal)
 - [ProxGradPyTorch](https://github.com/KentonMurray/ProxGradPytorch)
 
-We believe that `ProxTorch` is a valuable addition to the PyTorch ecosystem, and we hope that you find it useful in your projects.
+We're thrilled to introduce `ProxTorch` as an exciting addition to the PyTorch ecosystem. We're confident you'll love it!
 
-## Contributing
+## 🤝 **Contribute to the ProxTorch Revolution**
 
-We welcome contributions!
+Got ideas? Join our vibrant community and make `ProxTorch` even better!
 
-## License
+## 📜 **License**
 
-`ProxTorch` is released under the [MIT License](link-to-license-file).
+`ProxTorch` is proudly released under the [MIT License](link-to-license-file).
+```

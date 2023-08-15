@@ -1,3 +1,49 @@
+"""
+Comparing Custom Lasso Regression with scikit-learn's Implementation
+====================================================================
+
+This script demonstrates how to implement and train a Lasso regression model using
+PyTorch Lightning and compares it with scikit-learn's built-in Lasso regression.
+
+Lasso regression is a linear regression variant that incorporates L1 regularization,
+leading to sparse weight vectors. In other words, many weights become exactly zero,
+allowing for simpler and more interpretable models.
+
+In this example:
+
+- A custom `LassoRegression` class is defined using PyTorch Lightning, which
+  incorporates the L1 regularization via a proximal gradient method.
+
+- Synthetic data is generated where the ground truth weights are partly set to zero
+  to mimic sparse structures.
+
+- Both the custom Lasso model and scikit-learn's Lasso model are trained on the
+  synthetic data.
+
+- The models' performances are compared based on their mean squared error (MSE) on
+  a test set.
+
+- The predicted values of both models are visualized against the true values for
+  a comparative look.
+
+- Finally, the learned weights from both models are compared with the true weights
+  through bar plots.
+
+By the end of this script, you should have insights into how Lasso regression can
+be implemented in PyTorch Lightning and how its performance matches up against
+traditional implementations in packages like scikit-learn.
+
+Dependencies:
+- `torch`
+- `torch.nn`
+- `torch.optim`
+- `sklearn.model_selection`
+- `sklearn.linear_model`
+- `numpy`
+- `matplotlib`
+- `pytorch_lightning`
+- `proxtorch`
+"""
 import torch
 import torch.nn as nn
 import torch.optim as optim

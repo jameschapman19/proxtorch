@@ -1,3 +1,31 @@
+"""
+Robust Principal Component Analysis with PyTorch Lightning
+===========================================================
+
+This script demonstrates how to perform Robust Principal Component Analysis (RPCA) using
+PyTorch Lightning. RPCA decomposes a matrix into two components:
+
+1. A low-rank matrix that captures the global structure.
+2. A sparse matrix that identifies the sparse errors.
+
+The goal of RPCA is to find the best low-rank and sparse matrices that, when combined, closely
+approximate the original matrix.
+
+In this example:
+
+- A custom `RobustPCA` class is defined using PyTorch Lightning, which learns the low-rank and sparse matrices.
+- A `RandomMatrixDataset` class is designed to generate synthetic matrices composed of a true low-rank matrix and a true sparse matrix.
+- The model is trained to approximate these matrices.
+- The true and learned matrices are visualized for comparison.
+
+By the end of this script, you will have a clear idea of how to implement and visualize RPCA using PyTorch Lightning.
+
+Dependencies:
+- `pytorch_lightning`
+- `torch`
+- `matplotlib`
+- `proxtorch`
+"""
 import pytorch_lightning as pl
 import torch
 from torch.utils.data import DataLoader, Dataset

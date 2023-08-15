@@ -5,3 +5,4 @@ from .lInfinityBall import LInfinityBall
 from .frobenius import FrobeniusConstraint
 from .tracenorm import TraceNormConstraint
 from .box import BoxConstraint
+from .rank import RankConstraint

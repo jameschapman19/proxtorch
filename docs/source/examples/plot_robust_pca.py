@@ -26,45 +26,45 @@ Dependencies:
 - `matplotlib`
 - `proxtorch`
 """
+import matplotlib.pyplot as plt
 import pytorch_lightning as pl
 import torch
+from lightning import seed_everything
 from torch.utils.data import DataLoader, Dataset
-import matplotlib.pyplot as plt
-from proxtorch.operators import TraceNormProx, L1Prox
+
+from proxtorch.operators import L1Prox, TraceNormProx
+
+seed_everything(42)
 
 
 class RobustPCA(pl.LightningModule):
-    def __init__(self, input_shape, rank, lambda_):
+    def __init__(self, input_shape, sigma_tn, sigma_l1):
         super(RobustPCA, self).__init__()
         self.input_shape = input_shape
-        self.rank = rank
-        self.lambda_ = lambda_
-        self.low_rank = torch.nn.Parameter(torch.randn((input_shape[0], rank)))
-        self.sparse = torch.nn.Parameter(torch.randn(input_shape))
-
+        self.L = torch.nn.Parameter(torch.zeros(input_shape))
+        self.S = torch.nn.Parameter(torch.zeros(input_shape))
         # Proximal operators
-        self.trace_norm_prox = TraceNormProx()
-        self.l1_prox = L1Prox(sigma=lambda_)
+        self.trace_norm_prox = TraceNormProx(alpha=sigma_tn)
+        self.l1_prox = L1Prox(sigma=sigma_l1)
 
     def forward(self, x):
-        return self.low_rank @ self.low_rank.T + self.sparse
+        return self.L + self.S
 
     def training_step(self, batch, batch_idx):
-        x, _ = batch
-        reconstruction = self(x)
-        loss = torch.nn.functional.mse_loss(reconstruction, x)
-
-        # Proximal updates
-        with torch.no_grad():
-            self.low_rank.data = self.trace_norm_prox.prox(
-                self.low_rank.data, self.trainer.optimizers[0].param_groups[0]["lr"]
-            )
-            self.sparse.data = self.l1_prox.prox(
-                self.sparse.data, self.trainer.optimizers[0].param_groups[0]["lr"]
-            )
-
+        M = batch[0]
+        # change lr to 1/(maximum absolute value of M)
+        self.trainer.optimizers[0].param_groups[0]["lr"] = 1 / torch.abs(M).max()
+        loss = torch.norm(M - self.forward(M), 'fro')
         self.log("train_loss", loss)
         return loss
+
+    def on_train_batch_end(self, outputs, batch, batch_idx: int) -> None:
+        # Proximal updates
+        with torch.no_grad():
+            self.L.data = self.trace_norm_prox.prox(self.L.data, tau=self.trainer.optimizers[0].param_groups[0]["lr"])
+            self.S.data = self.l1_prox.prox(self.S.data, tau=self.trainer.optimizers[0].param_groups[0]["lr"])
+        self.log("trace_norm", self.trace_norm_prox(self.L.data))
+        self.log("l1_norm", self.l1_prox(self.S.data))
 
     def configure_optimizers(self):
         optimizer = torch.optim.SGD(self.parameters(), lr=0.1)
@@ -86,7 +86,6 @@ class RandomMatrixDataset(Dataset):
         sparse = sparse * mask
         self.L = low_rank
         self.S = sparse
-
         self.M = self.L + self.S
 
     def __len__(self):
@@ -96,16 +95,16 @@ class RandomMatrixDataset(Dataset):
         return self.M[idx], 0  # The second item (label) is just a placeholder
 
 
-n_samples = 100
-features = 100
+n_samples = 50
+features = 50
 rank = 5
 # DataLoader
 train_dataset = RandomMatrixDataset(n_samples, features, rank)
 train_loader = DataLoader(train_dataset, batch_size=n_samples, shuffle=False)
 
 # Initialize the model and trainer
-model = RobustPCA(input_shape=(n_samples, features), rank=5, lambda_=0.5)
-trainer = pl.Trainer(max_epochs=500)
+model = RobustPCA(input_shape=(n_samples, features), sigma_tn=0.05, sigma_l1=0.02)
+trainer = pl.Trainer(max_epochs=1000)
 trainer.fit(model, train_loader)
 
 # Visualization of the true and learned low-rank and sparse components
@@ -126,19 +125,20 @@ axes[0, 2].axis("off")
 
 # Learned Components
 axes[1, 0].imshow(
-    model.low_rank.detach().numpy() @ model.low_rank.T.detach().numpy(),
+    model.L.detach().numpy() @ model.L.T.detach().numpy(),
     cmap="gray",
     aspect="auto",
 )
 axes[1, 0].set_title("Learned Low Rank Component")
 axes[1, 0].axis("off")
 
-axes[1, 1].imshow(model.sparse.detach().numpy(), cmap="gray", aspect="auto")
+axes[1, 1].imshow(model.S.detach().numpy(), cmap="gray", aspect="auto")
 axes[1, 1].set_title("Learned Sparse Component")
 axes[1, 1].axis("off")
 
+model_M = model.L.detach().numpy() + model.S.detach().numpy()
 axes[1, 2].imshow(
-    model(model.sample_M.unsqueeze(0)).squeeze().detach().numpy(),
+    model_M,
     cmap="gray",
     aspect="auto",
 )

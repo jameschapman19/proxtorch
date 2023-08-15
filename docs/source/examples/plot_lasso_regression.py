@@ -74,7 +74,10 @@ class LassoRegression(pl.LightningModule):
         x, y = batch
         y_pred = self(x).squeeze()
         loss = nn.MSELoss()(y_pred, y)
+        self.log("train_loss", loss)
+        return loss
 
+    def on_train_batch_end(self, outputs, batch, batch_idx) -> None:
         with torch.no_grad():
             for param in self.parameters():
                 if param.requires_grad:
@@ -82,8 +85,6 @@ class LassoRegression(pl.LightningModule):
                         param.data, self.trainer.optimizers[0].param_groups[0]["lr"]
                     )
 
-        self.log("train_loss", loss)
-        return loss
 
     def configure_optimizers(self):
         optimizer = optim.SGD(self.parameters(), lr=0.01)

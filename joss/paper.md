@@ -37,22 +37,30 @@ Researchers venturing into fields like compressed sensing, image reconstruction,
 
 Imagine an optimization problem as a landscape filled with hills, valleys, cliffs, and plateaus. The goal is to find the lowest point. Gradient descent is like a ball rolling down, always seeking the easiest path downhill. Proximal gradient descent introduces a unique twist. In areas with sharp cliffs or plateaus (our non-smooth components), it's as if the ball has a magnet pulling it towards specific points of interest, ensuring it doesn't just get stuck or go astray.
 
-# Mathematics
+[//]: # (# Mathematics)
 
-Diving into the formalities, the optimization goal is to minimize a function which is a composite of a smooth component $ f $ and a non-smooth component $ g $:
+[//]: # ()
+[//]: # (Diving into the formalities, the optimization goal is to minimize a function which is a composite of a smooth component $ f $ and a non-smooth component $ g $:)
 
-$ \min_{x} \{ f(x) + g(x) \} $
+[//]: # ()
+[//]: # ($ \min_{x} \{ f&#40;x&#41; + g&#40;x&#41; \} $)
 
-The proximal gradient descent refines solutions through:
+[//]: # ()
+[//]: # (The proximal gradient descent refines solutions through:)
 
-1. Gradient descent for the smooth part, and
-2. A proximal step for the non-smooth part.
+[//]: # ()
+[//]: # (1. Gradient descent for the smooth part, and)
 
-Mathematically, the iteration process is captured as:
+[//]: # (2. A proximal step for the non-smooth part.)
 
-$ x^{(k+1)} = \text{prox}_{\alpha g}(x^{(k)} - \alpha \nabla f(x^{(k)})) $
+[//]: # ()
+[//]: # (Mathematically, the iteration process is captured as:)
 
-Where $ \alpha $ represents a step size, and $ \text{prox}_{\alpha g} $ signifies the proximal operator of function $ g $ scaled by $ \alpha $. `ProxTorch` seamlessly evaluates and integrates such proximal operators within PyTorch's ecosystem.
+[//]: # ()
+[//]: # ($ x^{&#40;k+1&#41;} = \text{prox}_{\alpha g}&#40;x^{&#40;k&#41;} - \alpha \nabla f&#40;x^{&#40;k&#41;}&#41;&#41; $)
+
+[//]: # ()
+[//]: # (Where $ \alpha $ represents a step size, and $ \text{prox}_{\alpha g} $ signifies the proximal operator of function $ g $ scaled by $ \alpha $. `ProxTorch` seamlessly evaluates and integrates such proximal operators within PyTorch's ecosystem.)
 
 # Documentation
 

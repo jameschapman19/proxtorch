@@ -39,9 +39,9 @@ Imagine an optimization problem as a landscape filled with hills, valleys, cliff
 
 # Mathematics
 
-Diving into the formalities, the optimization goal is to minimize a function which is a composite of a smooth component \( f \) and a non-smooth component \( g \):
+Diving into the formalities, the optimization goal is to minimize a function which is a composite of a smooth component $ f $ and a non-smooth component $ g $:
 
-\[ \min_{x} \{ f(x) + g(x) \} \]
+$ \min_{x} \{ f(x) + g(x) \} $
 
 The proximal gradient descent refines solutions through:
 
@@ -50,9 +50,9 @@ The proximal gradient descent refines solutions through:
 
 Mathematically, the iteration process is captured as:
 
-\[ x^{(k+1)} = \text{prox}_{\alpha g}(x^{(k)} - \alpha \nabla f(x^{(k)})) \]
+$ x^{(k+1)} = \text{prox}_{\alpha g}(x^{(k)} - \alpha \nabla f(x^{(k)})) $
 
-Where \( \alpha \) represents a step size, and \( \text{prox}_{\alpha g} \) signifies the proximal operator of function \( g \) scaled by \( \alpha \). `ProxTorch` seamlessly evaluates and integrates such proximal operators within PyTorch's ecosystem.
+Where $ \alpha $ represents a step size, and $ \text{prox}_{\alpha g} $ signifies the proximal operator of function $ g $ scaled by $ \alpha $. `ProxTorch` seamlessly evaluates and integrates such proximal operators within PyTorch's ecosystem.
 
 # Documentation
 

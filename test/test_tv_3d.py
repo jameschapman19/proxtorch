@@ -1,7 +1,9 @@
 import torch
 
 from proxtorch.operators import TV_3DProx
+
 torch.manual_seed(0)
+
 
 # Test the TV_3DProx class
 def test_total_variation_3d_prox():

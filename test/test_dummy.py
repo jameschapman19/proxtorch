@@ -1,7 +1,9 @@
 from proxtorch.operators import DummyProx
 
 import torch
+
 torch.manual_seed(0)
+
 
 def test_dummyprox():
     prox = DummyProx()

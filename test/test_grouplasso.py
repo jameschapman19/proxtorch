@@ -1,6 +1,8 @@
 import torch
 from proxtorch.operators import GroupLassoProx
+
 torch.manual_seed(0)
+
 
 def test_prox():
     lambda_ = 2.0

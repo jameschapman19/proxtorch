@@ -2,7 +2,9 @@ import torch
 
 from proxtorch.operators import FrobeniusProx
 from proxtorch.constraints import FrobeniusConstraint
+
 torch.manual_seed(0)
+
 
 def test_matrixfrobeniusprox():
     alpha = 0.1

@@ -1,6 +1,8 @@
 from proxtorch.constraints import LInfinityBall
 import torch
+
 torch.manual_seed(0)
+
 
 def test_linf_ball():
     linf_ball = LInfinityBall(s=2)

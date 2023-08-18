@@ -1,7 +1,7 @@
 import torch
 
 from proxtorch.operators import ElasticNetProx
-
+torch.manual_seed(0)
 
 def test_elasticnetprox():
     alpha = 0.1

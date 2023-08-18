@@ -1,7 +1,7 @@
 from proxtorch.constraints import NonNegativeConstraint
 
 import torch
-
+torch.manual_seed(0)
 
 def test_nonnegativeconstraint():
     x = torch.tensor([[-1.0, 2.0], [3.0, 4.0]])

@@ -1,6 +1,6 @@
 from proxtorch.constraints import BoxConstraint
 import torch
-
+torch.manual_seed(0)
 
 def test_boxconstraint():
     x = torch.tensor([[1.0, 2.0], [3.0, 4.0]])

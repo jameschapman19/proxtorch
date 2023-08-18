@@ -1,7 +1,7 @@
 import torch
 
 from proxtorch.operators import TVL1_3DProx
-
+torch.manual_seed(0)
 
 def test_total_variation_3d_prox():
     device = "cuda" if torch.cuda.is_available() else "cpu"

@@ -2,7 +2,7 @@ import torch
 
 from proxtorch.operators import L0Prox
 from proxtorch.constraints import L0Ball
-
+torch.manual_seed(0)
 
 def test_l0():
     l0_op = L0Prox(threshold=2.0)

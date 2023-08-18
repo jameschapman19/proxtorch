@@ -3,8 +3,8 @@ import torch
 from proxtorch.operators import TraceNormProx
 from proxtorch.constraints import TraceNormConstraint
 
-
 def test_tracenormprox():
+    torch.manual_seed(0)
     alpha = 0.1
     prox = TraceNormProx(alpha=alpha)
     x = torch.rand((3, 3))
@@ -14,6 +14,7 @@ def test_tracenormprox():
 
 
 def test_tracenormconstraint():
+    torch.manual_seed(0)
     alpha = 2.0
     constraint = TraceNormConstraint(alpha=alpha)
     x = torch.rand((3, 3))

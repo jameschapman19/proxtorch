@@ -1,7 +1,7 @@
 import torch
 
 from proxtorch.operators import TV_2DProx
-
+torch.manual_seed(0)
 
 # Test the TV_2DProx class
 def test_total_variation_2d_prox():

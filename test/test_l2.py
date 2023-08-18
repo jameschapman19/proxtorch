@@ -2,7 +2,7 @@ import torch
 
 from proxtorch.operators import L2Prox
 from proxtorch.constraints import L2Ball
-
+torch.manual_seed(0)
 
 def test_l2prox():
     alpha = 0.1

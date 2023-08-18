@@ -1,7 +1,7 @@
 import torch
 
 from proxtorch.constraints import RankConstraint
-
+torch.manual_seed(0)
 
 def test_rank_constraint():
     # Create a 10x10 rank 5 matrix

@@ -1,7 +1,7 @@
 import torch
 
 from proxtorch.operators import HuberProx
-
+torch.manual_seed(0)
 
 def test_huberprox():
     alpha = 0.1

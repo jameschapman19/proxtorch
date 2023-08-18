@@ -7,7 +7,12 @@ from proxtorch.base import ProxOperator
 
 class TVL1_3DProx(ProxOperator):
     def __init__(
-        self, sigma_l1: float, sigma_tv: float,shape, max_iter: int = 50, tol: float = 1e-7
+        self,
+        sigma_l1: float,
+        sigma_tv: float,
+        shape,
+        max_iter: int = 50,
+        tol: float = 1e-7,
     ) -> None:
         """
         Initialize the 3D Total Variation L1 proximal operator.
@@ -24,7 +29,7 @@ class TVL1_3DProx(ProxOperator):
         self.tol = tol
         self.sigma_l1 = sigma_l1
         self.sigma_tv = sigma_tv
-        self.tv = TV_3DProx(sigma_tv,shape, max_iter)
+        self.tv = TV_3DProx(sigma_tv, shape, max_iter)
         self.l1 = L1Prox(sigma_l1)
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
@@ -51,7 +56,7 @@ class TVL1_3DProx(ProxOperator):
         z.copy_(self.l1.prox(2 * y - x_next, tau))
 
         # check that z is sparse
-        sparse= torch.sum(z != 0) < torch.numel(z)
+        sparse = torch.sum(z != 0) < torch.numel(z)
         sparsity = torch.sum(z != 0) / torch.numel(z)
 
         # Step 3: Update x using relaxation

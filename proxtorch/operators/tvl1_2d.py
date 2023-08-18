@@ -4,7 +4,12 @@ from .tvl1_3d import TVL1_3DProx
 
 class TVL1_2DProx(TVL1_3DProx):
     def __init__(
-        self, sigma_l1: float, sigma_tv: float, shape, max_iter: int = 50, tol: float = 1e-4
+        self,
+        sigma_l1: float,
+        sigma_tv: float,
+        shape,
+        max_iter: int = 50,
+        tol: float = 1e-4,
     ) -> None:
         """
         Initialize the 2D Total Variation L1 proximal operator.
@@ -17,4 +22,4 @@ class TVL1_2DProx(TVL1_3DProx):
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
         """
         super(TVL1_2DProx, self).__init__(sigma_l1, sigma_tv, max_iter, tol)
-        self.tv = TV_2DProx(sigma_tv,shape, max_iter)
+        self.tv = TV_2DProx(sigma_tv, shape, max_iter)

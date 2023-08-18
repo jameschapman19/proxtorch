@@ -5,12 +5,13 @@ from proxtorch.base import ProxOperator
 
 
 class TV_3DProx(ProxOperator):
-    def __init__(self, sigma: float,shape, max_iter: int = 50, tol: float = 1e-4) -> None:
+    def __init__(self, sigma: float, shape=None, max_iter: int = 50, tol: float = 1e-4) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
 
         Args:
             sigma (float): Regularization strength.
+            shape (tuple, optional): Desired shape for the input tensor. Defaults to None.
             max_iter (int, optional): Maximum iterations for the iterative algorithm. Defaults to 50.
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
         """
@@ -74,7 +75,7 @@ class TV_3DProx(ProxOperator):
             torch.Tensor: Tensor after applying the proximal operation.
         """
         # check if x has shape self.shape if not try to reshape
-        if x.shape != self.shape:
+        if self.shape and x.shape != self.shape:
             x = x.reshape(self.shape)
         # Define constants and initial values
         tau = 1.0 / (2.0 * x.ndim)
@@ -123,7 +124,7 @@ class TV_3DProx(ProxOperator):
         return out
 
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
-        r"""
+        """
         Compute the Total Variation (TV) for a given tensor x.
 
         Args:
@@ -132,8 +133,8 @@ class TV_3DProx(ProxOperator):
         Returns:
             torch.Tensor: The TV of the tensor x.
         """
-        # check if x has shape self.shape if not try to reshape
-        if x.shape != self.shape:
+        # Check if self.shape is not None and x has different shape, then try to reshape
+        if self.shape and x.shape != self.shape:
             x = x.reshape(self.shape)
         gradients = self.gradient(x)
         return self.tv_from_grad(gradients)

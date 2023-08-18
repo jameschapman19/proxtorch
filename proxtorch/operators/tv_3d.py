@@ -74,6 +74,7 @@ class TV_3DProx(ProxOperator):
         Returns:
             torch.Tensor: Tensor after applying the proximal operation.
         """
+        input_shape = x.shape
         # check if x has shape self.shape if not try to reshape
         if self.shape and x.shape != self.shape:
             x = x.reshape(self.shape)
@@ -121,7 +122,7 @@ class TV_3DProx(ProxOperator):
             if i == 0:
                 E_init = E
 
-        return out
+        return out.reshape(input_shape)
 
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
         """

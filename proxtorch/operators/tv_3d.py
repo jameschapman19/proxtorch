@@ -5,7 +5,7 @@ from proxtorch.base import ProxOperator
 
 
 class TV_3DProx(ProxOperator):
-    def __init__(self, sigma: float, max_iter: int = 50, tol: float = 1e-4) -> None:
+    def __init__(self, sigma: float,shape, max_iter: int = 50, tol: float = 1e-4) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
 
@@ -18,6 +18,7 @@ class TV_3DProx(ProxOperator):
         self.sigma = sigma
         self.max_iter = max_iter
         self.tol = tol
+        self.shape = shape
 
     @staticmethod
     def gradient(x: torch.Tensor) -> torch.Tensor:
@@ -72,6 +73,9 @@ class TV_3DProx(ProxOperator):
         Returns:
             torch.Tensor: Tensor after applying the proximal operation.
         """
+        # check if x has shape self.shape if not try to reshape
+        if x.shape != self.shape:
+            x = x.reshape(self.shape)
         # Define constants and initial values
         tau = 1.0 / (2.0 * x.ndim)
         total_elements = torch.numel(x)
@@ -128,6 +132,9 @@ class TV_3DProx(ProxOperator):
         Returns:
             torch.Tensor: The TV of the tensor x.
         """
+        # check if x has shape self.shape if not try to reshape
+        if x.shape != self.shape:
+            x = x.reshape(self.shape)
         gradients = self.gradient(x)
         return self.tv_from_grad(gradients)
 

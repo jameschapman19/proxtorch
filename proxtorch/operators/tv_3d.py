@@ -5,7 +5,9 @@ from proxtorch.base import ProxOperator
 
 
 class TV_3DProx(ProxOperator):
-    def __init__(self, sigma: float, shape=None, max_iter: int = 50, tol: float = 1e-4) -> None:
+    def __init__(
+        self, sigma: float, shape=None, max_iter: int = 50, tol: float = 1e-4
+    ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
 

@@ -1,7 +1,9 @@
 import torch
 
 from proxtorch.operators import FusedLassoProx
+
 torch.manual_seed(0)
+
 
 def test_fusedlassoprox():
     lambda_ = 0.5

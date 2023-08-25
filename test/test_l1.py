@@ -2,7 +2,9 @@ import torch
 
 from proxtorch.operators import L1Prox
 from proxtorch.constraints import L1Ball
+
 torch.manual_seed(0)
+
 
 def test_l1():
     l1_op = L1Prox(sigma=2.0)

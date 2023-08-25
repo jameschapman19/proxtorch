@@ -3,6 +3,7 @@ import torch
 from proxtorch.operators import TraceNormProx
 from proxtorch.constraints import TraceNormConstraint
 
+
 def test_tracenormprox():
     torch.manual_seed(0)
     alpha = 0.1

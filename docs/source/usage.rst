@@ -3,7 +3,7 @@ Usage
 
 With the foundational knowledge of proximal operators and constraints and their roles in optimization, it's time to explore the practical application of ProxTorch in PyTorch-centric endeavors.
 
-**Step-by-Step Guide to Using ProxTorch**
+Step-by-Step Guide to Using ProxTorch
 -----------------------------------------
 
 Venturing into ProxTorch is a straightforward process. Here's your primer:
@@ -48,7 +48,7 @@ Venturing into ProxTorch is a straightforward process. Here's your primer:
 
    This yields the regularization value or penalty related to the tensor for the chosen proximal operator or constraint, respectively.
 
-**Broadening Your Scope**
+Broadening Your Scope
 -------------------------
 
 ProxTorch flaunts a comprehensive library of proximal operators and constraints, fit for diverse optimization riddles. Dive into the API Reference to uncover its full power. As you navigate, you'll encounter tools designed for nuanced problem architectures, enabling you to leverage the might of proximal strategies across varied optimization scenarios.

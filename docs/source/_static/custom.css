@@ -1,0 +1,30 @@
+/* Change primary color to PyTorch Orange */
+body {
+    --pst-color-primary: #EE4C2C;
+}
+
+/* Style navigation bar with a gradient reminiscent of PyTorch */
+.navbar {
+    background: linear-gradient(90deg, #EE4C2C, #FF6F41);
+}
+
+.navbar .navbar-brand a {
+    color: white !important;
+}
+
+.navbar .navbar-main .nav-item .nav-link {
+    color: white !important;
+}
+
+/* Override hyperlink colors */
+a {
+    color: #EE4C2C; /* PyTorch Orange */
+}
+
+a:hover, a:focus {
+    color: #FF6F41; /* Slightly different shade for hover and focus effect */
+}
+
+a:visited {
+    color: #D4432D; /* A shade for visited links; optional, and you can adjust as desired */
+}

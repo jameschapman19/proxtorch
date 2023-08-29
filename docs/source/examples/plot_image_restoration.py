@@ -28,12 +28,11 @@ seed_everything(42)
 
 # Load ProxTorch Logo as jpg then convert to grayscale numpy array
 proxtorch_logo = plt.imread("../proxtorch-logo.jpg")
-proxtorch_logo = 1-np.mean(proxtorch_logo, axis=2)
+proxtorch_logo = 1 - np.mean(proxtorch_logo, axis=2)
 # Normalize to [0, 1]
 proxtorch_logo = (proxtorch_logo - np.min(proxtorch_logo)) / (
     np.max(proxtorch_logo) - np.min(proxtorch_logo)
 )
-
 
 
 class TVL1Restoration(pl.LightningModule):
@@ -59,7 +58,9 @@ class TVL1Restoration(pl.LightningModule):
     def on_train_batch_end(self, _, __, batch_idx: int):
         with torch.no_grad():
             optimizer = self.trainer.optimizers[0]
-            self.restored.data = self.tvl1_prox.prox(self.restored.data, optimizer.param_groups[0]["lr"])
+            self.restored.data = self.tvl1_prox.prox(
+                self.restored.data, optimizer.param_groups[0]["lr"]
+            )
 
 
 class TVRestoration(pl.LightningModule):
@@ -85,12 +86,18 @@ class TVRestoration(pl.LightningModule):
     def on_train_batch_end(self, _, __, batch_idx: int):
         with torch.no_grad():
             optimizer = self.trainer.optimizers[0]
-            self.restored.data = self.tv_prox.prox(self.restored.data, optimizer.param_groups[0]["lr"])
+            self.restored.data = self.tv_prox.prox(
+                self.restored.data, optimizer.param_groups[0]["lr"]
+            )
 
 
 # Data Preparation
-noisy_logo = proxtorch_logo + np.random.normal(loc=0, scale=0.5, size=proxtorch_logo.shape)
-dataset = TensorDataset(torch.tensor(noisy_logo).unsqueeze(0), torch.tensor(proxtorch_logo).unsqueeze(0))
+noisy_logo = proxtorch_logo + np.random.normal(
+    loc=0, scale=0.5, size=proxtorch_logo.shape
+)
+dataset = TensorDataset(
+    torch.tensor(noisy_logo).unsqueeze(0), torch.tensor(proxtorch_logo).unsqueeze(0)
+)
 loader = DataLoader(dataset, batch_size=1)
 
 # Model Initialization
@@ -103,11 +110,13 @@ trainer.fit(tv_model, loader)
 trainer = pl.Trainer(max_epochs=100)
 trainer.fit(tv_l1_model, loader)
 
+
 # Evaluation
 def evaluate(model, label):
     model.eval()
     loss = torch.mean((model.restored - torch.tensor(proxtorch_logo).unsqueeze(0)) ** 2)
     print(f"{label} loss: {loss.item()}")
+
 
 evaluate(tv_model, "TV")
 evaluate(tv_l1_model, "TV-L1")
@@ -139,4 +148,3 @@ ax[3].set_title("TV-L1 Restored")
 
 plt.tight_layout()
 plt.show()
-

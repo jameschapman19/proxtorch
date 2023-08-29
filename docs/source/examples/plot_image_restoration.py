@@ -100,9 +100,9 @@ tv_l1_model = TVL1Restoration(lasso_param=0.01, tv_param=0.5)
 tv_model = TVRestoration(tv_param=0.5)
 
 # Training
-trainer = pl.Trainer(max_epochs=100)
+trainer = pl.Trainer(max_epochs=200)
 trainer.fit(tv_model, loader)
-trainer = pl.Trainer(max_epochs=100)
+trainer = pl.Trainer(max_epochs=200)
 trainer.fit(tv_l1_model, loader)
 
 # Evaluation

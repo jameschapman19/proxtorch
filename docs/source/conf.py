@@ -71,7 +71,7 @@ autodoc_default_options = {
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'pydata_sphinx_theme'
+html_theme = "pydata_sphinx_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -90,7 +90,7 @@ html_theme_options = {
             # The type of image to be used (see below for details)
             "type": "fontawesome",
         }
-   ],
+    ],
     "use_edit_page_button": True,
 }
 
@@ -102,8 +102,8 @@ html_context = {
 }
 
 # Add paths for custom static files
-html_static_path = ['_static']
-html_css_files = ['custom.css']
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.

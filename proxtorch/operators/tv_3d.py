@@ -140,7 +140,7 @@ class TV_3DProx(ProxOperator):
         if self.shape and x.shape != self.shape:
             x = x.reshape(self.shape)
         gradients = self.gradient(x)
-        return self.tv_from_grad(gradients)
+        return self.tv_from_grad(gradients) * self.alpha
 
     @staticmethod
     def tv_from_grad(gradients: torch.Tensor) -> float:

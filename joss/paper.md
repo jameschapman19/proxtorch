@@ -8,7 +8,7 @@ tags:
   - machine learning
 authors:
   - name: James Chapman
-    orcid: Your ORCID Here
+    orcid: 0000-0002-9364-8118
     affiliation: "1"
   # Add more authors and their details as necessary
 affiliations:
@@ -21,53 +21,26 @@ bibliography: paper.bib
 
 # Summary
 
-Optimization is a cornerstone in many domains, and its intuitive idea can be likened to navigating a landscape of valleys and mountains. Classic gradient descent is reminiscent of a ball smoothly rolling down a hill. But when landscapes have peculiar terrains like sharp cliffs or plateaus, proximal gradient descent comes into play, blending the simplicity of gradient descent with a "magnetic pull" from these unique terrains, the non-smooth component.
+Imagine embarking on a road trip. Some parts of your journey are smooth, freshly-paved highways, while others are rough, potholed streets. Gradient descent techniques are like driving at a constant speed, which works well on the highways but poses risks on the rough terrains. Proximal gradient descent, in contrast, is akin to an adaptive cruise control system in your car. It lets you speed on the highways and carefully maneuver through the challenging parts, ensuring you reach your destination effectively.
 
-PyTorch, with its GPU acceleration, has emerged as the de facto standard for gradient descent tasks amongst researchers. Yet, merging the capabilities of proximal gradient descent into PyTorch is non-trivial. Enter `ProxTorch`: a library integrating the might of proximal gradient descent within the optimized framework of PyTorch.
+In the realm of computational optimization, this translates to navigating a landscape with both smooth and non-smooth terrains. PyTorch [@paszke2019pytorch], a leading deep learning framework, excels in the 'highway' scenarios but is less equipped for the 'potholed streets'. Enter `ProxTorch`: a library crafted to seamlessly blend the power of proximal gradient descent with the prowess of PyTorch, ensuring an optimized journey through the diverse landscapes of optimization problems.
 
 # Statement of Need
 
-As machine learning and data science evolve, the challenges in optimization diversify. While PyTorch offers advanced modeling capabilities, it's less equipped for problems where the optimization landscape incorporates complex features or constraints. 
+The challenges in optimization continue to evolve as the machine learning and data science landscape broadens. PyTorch is versatile, offering state-of-the-art modeling capabilities. Yet, its conventional mechanisms sometimes fall short in landscapes replete with non-smooth complexities. 
 
-`ProxTorch` ushers in regularization-style proximal operators, which can be perceived as "soft constraints", alongside constraint-style operators that enforce stricter requirements. Such dual capabilities are invaluable for tasks demanding specific features in solutions, like sparsity or bounded values.
+`ProxTorch` introduces regularization-style proximal operators, which act like "soft constraints", along with constraint-style operators for stricter requirements. This versatility becomes pivotal for tasks that need specific features in their solutions, such as sparsity or bounded values.
 
-Researchers venturing into fields like compressed sensing, image reconstruction, and sparse modeling will find `ProxTorch` indispensable. It synergizes with PyTorch, enabling users to harness the combined strengths of proximal gradient descent and GPU-powered computations.
+For researchers navigating the terrains of compressed sensing, image reconstruction, and sparse modeling, `ProxTorch` offers a smoother ride. It harmoniously combines proximal gradient descent's nuanced adaptability with PyTorch's GPU-accelerated computational strengths.
 
-# Non-mathematical Intuition
-
-Imagine an optimization problem as a landscape filled with hills, valleys, cliffs, and plateaus. The goal is to find the lowest point. Gradient descent is like a ball rolling down, always seeking the easiest path downhill. Proximal gradient descent introduces a unique twist. In areas with sharp cliffs or plateaus (our non-smooth components), it's as if the ball has a magnet pulling it towards specific points of interest, ensuring it doesn't just get stuck or go astray.
-
-[//]: # (# Mathematics)
-
-[//]: # ()
-[//]: # (Diving into the formalities, the optimization goal is to minimize a function which is a composite of a smooth component $ f $ and a non-smooth component $ g $:)
-
-[//]: # ()
-[//]: # ($ \min_{x} \{ f&#40;x&#41; + g&#40;x&#41; \} $)
-
-[//]: # ()
-[//]: # (The proximal gradient descent refines solutions through:)
-
-[//]: # ()
-[//]: # (1. Gradient descent for the smooth part, and)
-
-[//]: # (2. A proximal step for the non-smooth part.)
-
-[//]: # ()
-[//]: # (Mathematically, the iteration process is captured as:)
-
-[//]: # ()
-[//]: # ($ x^{&#40;k+1&#41;} = \text{prox}_{\alpha g}&#40;x^{&#40;k&#41;} - \alpha \nabla f&#40;x^{&#40;k&#41;}&#41;&#41; $)
-
-[//]: # ()
-[//]: # (Where $ \alpha $ represents a step size, and $ \text{prox}_{\alpha g} $ signifies the proximal operator of function $ g $ scaled by $ \alpha $. `ProxTorch` seamlessly evaluates and integrates such proximal operators within PyTorch's ecosystem.)
+Inspiration for `ProxTorch` stems from PyProximal [@pyproximal], a Python library rich in proximal operators and algorithms. However, PyProximal doesn't gel with PyTorch's GPU capabilities. Overcoming this, `ProxTorch` provides linear operators that sync flawlessly with PyTorch tensors and devices, while also leveraging PyTorch’s automatic differentiation to efficiently compute gradients.
 
 # Documentation
 
-`ProxTorch`'s documentation is available at [https://proxtorch.readthedocs.io/en/latest/](https://proxtorch.readthedocs.io/en/latest/).
+Journey deeper into `ProxTorch` with our comprehensive documentation at [https://proxtorch.readthedocs.io/en/latest/](https://arxiv.org/abs/1912.01703).
 
 # Acknowledgements
 
-JC is supported by the EPSRC-funded UCL Centre for Doctoral Training in Intelligent, Integrated Imaging in Healthcare ( i4health) (EP/S021930/1) and the Department of Health’s NIHR-funded Biomedical Research Centre at University College London Hospitals.
+JC is grateful for the support from the EPSRC-funded UCL Centre for Doctoral Training in Intelligent, Integrated Imaging in Healthcare ( i4health) (EP/S021930/1) and the Department of Health’s NIHR-funded Biomedical Research Centre at University College London Hospitals.
 
 # References

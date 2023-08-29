@@ -48,13 +48,14 @@ class TVL1Restoration(pl.LightningModule):
     def training_step(self, batch, _):
         noisy, original = batch
         y_hat = self.restored
-        loss = torch.mean((y_hat - noisy) ** 2)
+        loss = torch.sum((y_hat - noisy) ** 2)
         self.log("fidelity_loss", loss)
-        self.log("tvl1_loss", self.tvl1_prox(y_hat))
+        tv_loss = self.tvl1_prox(self.restored)
+        self.log("tvl1_loss", tv_loss)
         return loss
 
     def configure_optimizers(self):
-        return optim.Adam(self.parameters(), lr=0.01)
+        return optim.SGD(self.parameters(), lr=0.01)
 
     def on_train_batch_end(self, _, __, batch_idx: int):
         with torch.no_grad():
@@ -74,13 +75,14 @@ class TVRestoration(pl.LightningModule):
     def training_step(self, batch, _):
         noisy, original = batch
         y_hat = self.restored
-        loss = torch.mean((y_hat - noisy) ** 2)
+        loss = torch.sum((y_hat - noisy) ** 2)
         self.log("fidelity_loss", loss)
-        self.log("tv_loss", self.tv_prox(y_hat))
+        tv_loss = self.tv_prox(self.restored)
+        self.log("tv_loss", tv_loss)
         return loss
 
     def configure_optimizers(self):
-        return optim.Adam(self.parameters(), lr=0.01)
+        return optim.SGD(self.parameters(), lr=0.01)
 
     def on_train_batch_end(self, _, __, batch_idx: int):
         with torch.no_grad():
@@ -89,13 +91,13 @@ class TVRestoration(pl.LightningModule):
 
 
 # Data Preparation
-noisy_logo = proxtorch_logo + np.random.normal(loc=0, scale=0.5, size=proxtorch_logo.shape)
+noisy_logo = proxtorch_logo + np.random.normal(loc=0, scale=0.2, size=proxtorch_logo.shape)
 dataset = TensorDataset(torch.tensor(noisy_logo).unsqueeze(0), torch.tensor(proxtorch_logo).unsqueeze(0))
 loader = DataLoader(dataset, batch_size=1)
 
 # Model Initialization
-tv_l1_model = TVL1Restoration(lasso_param=0.1, tv_param=0.8)
-tv_model = TVRestoration(tv_param=0.8)
+tv_l1_model = TVL1Restoration(lasso_param=0.01, tv_param=0.5)
+tv_model = TVRestoration(tv_param=0.5)
 
 # Training
 trainer = pl.Trainer(max_epochs=100)

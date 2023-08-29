@@ -48,7 +48,7 @@ class MatrixCompletion(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         Y_observed, mask = batch
-        loss = 0.5 * torch.norm(mask * (Y_observed - self.forward(Y_observed)), 'fro')
+        loss = 0.5 * torch.norm(mask * (Y_observed - self.forward(Y_observed)), "fro")
         self.log("train_loss", loss)
         tn_loss = self.trace_norm_prox(self.B.data)
         self.log("trace_norm", tn_loss)
@@ -79,8 +79,9 @@ class MatrixCompletionDataset(Dataset):
         self.Y = user_pref @ movie_features
 
         # Generate a consistent mask for missing data
-        self.mask = torch.rand(
-            (num_users, num_movies)) > mask_ratio  # If mask_ratio is 0.7, 30% of entries will be known
+        self.mask = (
+            torch.rand((num_users, num_movies)) > mask_ratio
+        )  # If mask_ratio is 0.7, 30% of entries will be known
         self.known_entries = self.Y * self.mask
 
     def __len__(self):
@@ -96,7 +97,12 @@ num_movies = 10
 latent_features = 2  # Number of latent features that influence a user's decision
 observed_ratio = 0.1  # Only 20% of the user-movie interactions are observed
 
-dataset = MatrixCompletionDataset(num_users=num_users, num_movies=num_movies, rank=latent_features, mask_ratio=1-observed_ratio)
+dataset = MatrixCompletionDataset(
+    num_users=num_users,
+    num_movies=num_movies,
+    rank=latent_features,
+    mask_ratio=1 - observed_ratio,
+)
 loader = DataLoader(dataset, batch_size=1)
 
 # Initialize the model and trainer
@@ -112,7 +118,9 @@ fig, axes = plt.subplots(nrows=1, ncols=5, figsize=(15, 5))
 matrix_display = np.where(dataset.known_entries == 0, np.nan, dataset.known_entries)
 
 # 1. Original matrix with missing entries
-axes[0].imshow(matrix_display, cmap="coolwarm", aspect="auto", vmin=0, vmax=dataset.Y.max())
+axes[0].imshow(
+    matrix_display, cmap="coolwarm", aspect="auto", vmin=0, vmax=dataset.Y.max()
+)
 axes[0].set_title("Original Matrix with Missing Entries")
 axes[0].set_xlabel("Movies")
 axes[0].set_ylabel("Users")
@@ -134,7 +142,13 @@ axes[2].set_xlabel("Movies")
 axes[2].set_ylabel("Users")
 
 # 4. The fully completed matrix B
-axes[3].imshow(model.B.detach().numpy(), cmap="coolwarm", aspect="auto", vmin=0, vmax=dataset.Y.max())
+axes[3].imshow(
+    model.B.detach().numpy(),
+    cmap="coolwarm",
+    aspect="auto",
+    vmin=0,
+    vmax=dataset.Y.max(),
+)
 axes[3].set_title("Fully Completed Matrix B")
 axes[3].set_xlabel("Movies")
 axes[3].set_ylabel("Users")

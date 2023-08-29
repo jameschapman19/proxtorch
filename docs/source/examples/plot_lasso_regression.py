@@ -65,7 +65,7 @@ class LassoRegression(pl.LightningModule):
         self.input_size = input_size
         self.lasso_param = lasso_param
         self.linear = nn.Linear(input_size, 1)
-        self.l1_prox = L1Prox(sigma=lasso_param)
+        self.l1_prox = L1Prox(alpha=lasso_param)
 
     def forward(self, x):
         return self.linear(x)

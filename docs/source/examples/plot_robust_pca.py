@@ -45,7 +45,7 @@ class RobustPCA(pl.LightningModule):
         self.S = torch.nn.Parameter(torch.zeros(input_shape))
         # Proximal operators
         self.trace_norm_prox = TraceNormProx(alpha=sigma_tn)
-        self.l1_prox = L1Prox(sigma=sigma_l1)
+        self.l1_prox = L1Prox(alpha=sigma_l1)
 
     def forward(self, x):
         return self.L + self.S

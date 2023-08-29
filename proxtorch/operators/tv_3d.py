@@ -6,19 +6,19 @@ from proxtorch.base import ProxOperator
 
 class TV_3DProx(ProxOperator):
     def __init__(
-        self, sigma: float, shape=None, max_iter: int = 50, tol: float = 1e-4
+        self, alpha: float, shape=None, max_iter: int = 50, tol: float = 1e-4
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
 
         Args:
-            sigma (float): Regularization strength.
+            alpha (float): Regularization strength.
             shape (tuple, optional): Desired shape for the input tensor. Defaults to None.
             max_iter (int, optional): Maximum iterations for the iterative algorithm. Defaults to 50.
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
         """
         super().__init__()
-        self.sigma = sigma
+        self.alpha = alpha
         self.max_iter = max_iter
         self.tol = tol
         self.shape = shape
@@ -103,10 +103,10 @@ class TV_3DProx(ProxOperator):
 
             # Compute norm of the gradient
             norm = torch.sqrt(torch.sum(gradient_of_out**2, dim=0, keepdim=True))
-            E += lr * self.sigma * torch.sum(norm)
+            E += lr * self.alpha * torch.sum(norm)
 
             # Update step for the dual variable p
-            norm_scaling = tau / (self.sigma * lr)
+            norm_scaling = tau / (self.alpha * lr)
             p -= tau * gradient_of_out
             p /= norm * norm_scaling + 1.0
 

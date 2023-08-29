@@ -7,7 +7,7 @@ torch.manual_seed(0)
 
 def test_total_variation_3d_prox():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    tv = TVL1_3DProx(sigma_l1=1e-2, sigma_tv=1e-2, max_iter=50)
+    tv = TVL1_3DProx(alpha_l1=1e-2, alpha_tv=1e-2, max_iter=50)
 
     p = 10
 

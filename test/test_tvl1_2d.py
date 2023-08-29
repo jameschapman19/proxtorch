@@ -8,7 +8,7 @@ torch.manual_seed(0)
 # Test the TV_2DProx class
 def test_total_variation_2d_prox():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    tv = TVL1_2DProx(sigma_l1=1e-3, sigma_tv=1e-3, max_iter=50)
+    tv = TVL1_2DProx(alpha_l1=1e-3, alpha_tv=1e-3, max_iter=50)
 
     p = 10
 

@@ -4,16 +4,16 @@ from proxtorch.base import ProxOperator
 
 
 class GroupLassoProx(ProxOperator):
-    def __init__(self, lambda_: float, group_sizes: list):
+    def __init__(self, alpha: float, group_sizes: list):
         r"""
         Initialize the GroupLassoProx operator.
 
         Args:
-            lambda_ (float): Group Lasso regularization parameter.
+            alpha (float): Group Lasso regularization parameter.
             group_sizes (list): List containing the sizes of each group.
         """
         super(GroupLassoProx, self).__init__()
-        self.lambda_ = lambda_
+        self.alpha = alpha
         self.group_sizes = group_sizes
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
@@ -33,7 +33,7 @@ class GroupLassoProx(ProxOperator):
             end = start + size
             group_norm = torch.norm(x[start:end], p=2)
             if group_norm > 0:
-                multiplier = max(1 - self.lambda_ * tau / group_norm, 0)
+                multiplier = max(1 - self.alpha * tau / group_norm, 0)
                 result[start:end] = multiplier * x[start:end]
             start = end
 
@@ -56,4 +56,4 @@ class GroupLassoProx(ProxOperator):
             penalty += torch.norm(x[start:end], p=2)
             start = end
 
-        return self.lambda_ * penalty
+        return self.alpha * penalty

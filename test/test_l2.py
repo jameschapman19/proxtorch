@@ -20,7 +20,7 @@ def test_l2ball():
     constraint = L2Ball(s=alpha)
     x = torch.tensor([1.0, 2.0, 3.0])
     result = constraint.prox(x)
-    # check if the norm of the result is less than or equal to alpha
+    # check if the norm of the result is less than or equal to s
     assert torch.norm(result) <= alpha
 
     # test call method

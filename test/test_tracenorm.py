@@ -20,7 +20,7 @@ def test_tracenormconstraint():
     constraint = TraceNormConstraint(alpha=alpha)
     x = torch.rand((3, 3))
     result = constraint.prox(x)
-    # Ensuring the trace norm is less than or equal to alpha
+    # Ensuring the trace norm is less than or equal to s
     assert torch.trace(result) <= alpha
 
     # test call method

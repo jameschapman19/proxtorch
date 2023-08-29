@@ -9,12 +9,12 @@ class L1Prox(ProxOperator):
     The L1Prox norm promotes sparsity in the tensor.
 
     Attributes:
-        sigma (float): Regularization strength.
+        alpha (float): Regularization strength.
     """
 
-    def __init__(self, sigma: float = 1.0):
+    def __init__(self, alpha: float = 1.0):
         super().__init__()
-        self.sigma = sigma
+        self.alpha = alpha
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
         r"""
@@ -27,7 +27,7 @@ class L1Prox(ProxOperator):
         Returns:
             torch.Tensor: Resultant tensor after soft-thresholding.
         """
-        return torch.sign(x) * torch.clamp(torch.abs(x) - tau * self.sigma, min=0)
+        return torch.sign(x) * torch.clamp(torch.abs(x) - tau * self.alpha, min=0)
 
     def __call__(self, x: torch.Tensor) -> float:
         r"""
@@ -39,4 +39,4 @@ class L1Prox(ProxOperator):
         Returns:
             float: The L1Prox norm value.
         """
-        return torch.sum(torch.abs(x)) * self.sigma
+        return torch.sum(torch.abs(x)) * self.alpha

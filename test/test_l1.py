@@ -7,7 +7,7 @@ torch.manual_seed(0)
 
 
 def test_l1():
-    l1_op = L1Prox(sigma=2.0)
+    l1_op = L1Prox(alpha=2.0)
     x = torch.tensor([1.0, 3.0, -0.5, -2.5])
 
     # Test prox method

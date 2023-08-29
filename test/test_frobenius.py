@@ -17,10 +17,10 @@ def test_matrixfrobeniusprox():
 
 def test_matrixfrobeniusconstraint():
     alpha = 0.1
-    constraint = FrobeniusConstraint(alpha=alpha)
+    constraint = FrobeniusConstraint(s=alpha)
     x = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
     result = constraint.prox(x)
-    # Ensuring the trace norm is less than or equal to alpha
+    # Ensuring the trace norm is less than or equal to s
     assert torch.norm(result) <= alpha
 
     # test call method

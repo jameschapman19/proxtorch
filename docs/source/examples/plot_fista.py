@@ -31,7 +31,7 @@ X, y = torch.tensor(X, dtype=torch.float32), torch.tensor(y, dtype=torch.float32
 alpha = 0.1  # Regularization parameter for Lasso
 lr = 0.01  # Learning rate
 n_iter = 100  # Number of iterations
-l1_prox = L1Prox(sigma=alpha)
+l1_prox = L1Prox(alpha=alpha)
 
 
 def fista(X, y, l1_prox, lr, n_iter):

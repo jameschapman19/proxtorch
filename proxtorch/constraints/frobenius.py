@@ -7,12 +7,12 @@ class FrobeniusConstraint(Constraint):
     Constraint for the Frobenius norm.
 
     Attributes:
-        alpha (float): Regularization strength.
+        s (float): Regularization strength.
     """
 
-    def __init__(self, alpha: float = 1.0):
+    def __init__(self, s: float = 1.0):
         super().__init__()
-        self.alpha = alpha
+        self.s = s
 
     def __call__(self, x: torch.Tensor) -> bool:
         r"""
@@ -22,10 +22,10 @@ class FrobeniusConstraint(Constraint):
             x (torch.Tensor): Input tensor.
 
         Returns:
-            bool: True if Frobenius norm of x is less than or equal to alpha, False otherwise.
+            bool: True if Frobenius norm of x is less than or equal to s, False otherwise.
         """
         frobenius_norm = torch.norm(x, p="fro")
-        return frobenius_norm <= self.alpha
+        return frobenius_norm <= self.s
 
     def prox(self, x: torch.Tensor) -> torch.Tensor:
         r"""
@@ -38,6 +38,6 @@ class FrobeniusConstraint(Constraint):
             torch.Tensor: Tensor after projection.
         """
         frobenius_norm = torch.norm(x, p="fro")
-        if frobenius_norm > self.alpha:
-            return self.alpha * (x / frobenius_norm)
+        if frobenius_norm > self.s:
+            return self.s * (x / frobenius_norm)
         return x

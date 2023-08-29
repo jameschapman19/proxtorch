@@ -22,7 +22,7 @@ class TraceNormConstraint(Constraint):
             x (torch.Tensor): Input tensor.
 
         Returns:
-            bool: True if trace norm of x is less than or equal to alpha, False otherwise.
+            bool: True if trace norm of x is less than or equal to s, False otherwise.
         """
         singular_values = torch.svd(x).S
         trace_norm = torch.sum(singular_values)
@@ -39,7 +39,7 @@ class TraceNormConstraint(Constraint):
             torch.Tensor: Tensor after projection.
         """
         u, s, v = torch.svd(x)
-        # Clip singular values so that their sum doesn't exceed alpha
+        # Clip singular values so that their sum doesn't exceed s
         cumulative_s = torch.cumsum(s, dim=0)
         k = (cumulative_s <= self.alpha).sum()
         if k > 0:

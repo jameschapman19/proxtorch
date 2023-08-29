@@ -8,8 +8,8 @@ from proxtorch.base import ProxOperator
 class TVL1_3DProx(ProxOperator):
     def __init__(
         self,
-        sigma_l1: float,
-        sigma_tv: float,
+        alpha_l1: float,
+        alpha_tv: float,
         shape=None,
         max_iter: int = 50,
         tol: float = 1e-7,
@@ -18,8 +18,8 @@ class TVL1_3DProx(ProxOperator):
         Initialize the 3D Total Variation L1 proximal operator.
 
         Args:
-            sigma_l1 (float): L1 regularization strength.
-            sigma_tv (float): TV regularization strength.
+            alpha_l1 (float): L1 regularization strength.
+            alpha_tv (float): TV regularization strength.
             shape (tuple, optional): Desired shape for the input tensor. Defaults to None.
             max_iter (int, optional): Maximum iterations for the iterative algorithm. Defaults to 50.
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
@@ -27,10 +27,10 @@ class TVL1_3DProx(ProxOperator):
         super(TVL1_3DProx, self).__init__()
         self.max_iter = max_iter
         self.tol = tol
-        self.sigma_l1 = sigma_l1
-        self.sigma_tv = sigma_tv
-        self.tv = TV_3DProx(sigma_tv, shape, max_iter)
-        self.l1 = L1Prox(sigma_l1)
+        self.alpha_l1 = alpha_l1
+        self.alpha_tv = alpha_tv
+        self.tv = TV_3DProx(alpha_tv, shape, max_iter)
+        self.l1 = L1Prox(alpha_l1)
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
         r"""

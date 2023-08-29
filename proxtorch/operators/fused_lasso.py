@@ -7,9 +7,9 @@ from proxtorch.base import ProxOperator
 class FusedLassoProx(ProxOperator):
     r"""Proximal operator for the 1D Fused Lasso."""
 
-    def __init__(self, sigma: float):
+    def __init__(self, alpha: float):
         super().__init__()
-        self.sigma = sigma
+        self.alpha = alpha
 
     def prox(self, x: Tensor, tau: float) -> Tensor:
         r"""
@@ -27,7 +27,7 @@ class FusedLassoProx(ProxOperator):
             More efficient algorithms exist for larger-scale problems.
         """
         diff = x[:-1] - x[1:]
-        threshold = self.sigma * tau
+        threshold = self.alpha * tau
         diff = torch.sign(diff) * torch.clamp(torch.abs(diff) - threshold, min=0)
         result = torch.zeros_like(x)
         result[0] = x[0] + diff[0]
@@ -37,4 +37,4 @@ class FusedLassoProx(ProxOperator):
 
     def __call__(self, x: Tensor) -> float:
         r"""Compute the Fused Lasso objective for a given input tensor."""
-        return self.sigma * torch.sum(torch.abs(x[:-1] - x[1:]))
+        return self.alpha * torch.sum(torch.abs(x[:-1] - x[1:]))

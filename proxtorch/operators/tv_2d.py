@@ -14,4 +14,4 @@ class TV_2DProx(TV_3DProx):
             max_iter (int, optional): Maximum iterations for the iterative algorithm. Defaults to 50.
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
         """
-        super().__init__(alpha, shape, max_iter, tol, l1_ratio=0.0)
+        super().__init__(alpha, shape, max_iter, tol)

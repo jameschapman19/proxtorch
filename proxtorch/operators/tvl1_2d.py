@@ -6,7 +6,6 @@ from proxtorch.operators.tvl1_3d import TVL1_3DProx
 
 
 class TVL1_2DProx(TVL1_3DProx):
-
     def gradient(self, x: torch.Tensor) -> torch.Tensor:
         grad_x = F.pad(x[1:, :] - x[:-1, :], (0, 0, 0, 1))
         grad_y = F.pad(x[:, 1:] - x[:, :-1], (0, 1, 0, 0))

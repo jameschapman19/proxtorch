@@ -7,7 +7,12 @@ from proxtorch.operators import TVL1_3DProx
 
 class TVL1_2DProx(TVL1_3DProx):
     def __init__(
-            self, alpha: float, shape=None, max_iter: int = 200, tol: float = 1e-4, l1_ratio=0.0
+        self,
+        alpha: float,
+        shape=None,
+        max_iter: int = 200,
+        tol: float = 1e-4,
+        l1_ratio=0.0,
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
@@ -47,8 +52,6 @@ class TVL1_2DProx(TVL1_3DProx):
 
         return (div_x + div_y) * (1 - self.l1_ratio) - self.l1_ratio * p[-1]
 
-
-
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
         """
         Compute the Total Variation (TV) for a given tensor x.
@@ -77,4 +80,4 @@ class TVL1_2DProx(TVL1_3DProx):
             float: The TV value computed from the gradients.
         """
         grad_x, grad_y = gradients[0], gradients[1]
-        return torch.sum(torch.sqrt(grad_x ** 2 + grad_y ** 2 ))
+        return torch.sum(torch.sqrt(grad_x**2 + grad_y**2))

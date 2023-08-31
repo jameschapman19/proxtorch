@@ -6,7 +6,7 @@ from proxtorch.operators.tv_3d import TV_3DProx
 
 class TV_2DProx(TV_3DProx):
     def __init__(
-            self, alpha: float, shape=None, max_iter: int = 200, tol: float = 1e-4
+        self, alpha: float, shape=None, max_iter: int = 200, tol: float = 1e-4
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.

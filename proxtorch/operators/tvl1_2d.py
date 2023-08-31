@@ -2,7 +2,7 @@ from math import sqrt
 
 import torch
 import torch.nn.functional as F
-from proxtorch.operators import TVL1_3DProx
+from proxtorch.operators.tvl1_3d import TVL1_3DProx
 
 
 class TVL1_2DProx(TVL1_3DProx):

@@ -1,9 +1,6 @@
 from math import sqrt
 
 import torch
-
-from .l1 import L1Prox
-from .tv_3d import TV_3DProx
 from proxtorch.base import ProxOperator
 import torch
 import torch.nn.functional as F

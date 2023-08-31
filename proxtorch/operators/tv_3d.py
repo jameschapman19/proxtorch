@@ -1,5 +1,5 @@
 
-from proxtorch.operators import TVL1_3DProx
+from proxtorch.operators.tvl1_3d import TVL1_3DProx
 
 
 class TV_3DProx(TVL1_3DProx):

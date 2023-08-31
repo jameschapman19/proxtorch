@@ -1,6 +1,3 @@
-import torch.nn.functional as F
-import torch
-
 from proxtorch.operators.tv_3d import TV_3DProx
 
 

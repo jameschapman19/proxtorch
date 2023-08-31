@@ -5,9 +5,15 @@ from proxtorch.base import ProxOperator
 import torch
 import torch.nn.functional as F
 
+
 class TVL1_3DProx(ProxOperator):
     def __init__(
-            self, alpha: float, shape=None, max_iter: int = 200, tol: float = 1e-4, l1_ratio=0.0
+        self,
+        alpha: float,
+        shape=None,
+        max_iter: int = 200,
+        tol: float = 1e-4,
+        l1_ratio=0.0,
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
@@ -85,7 +91,12 @@ class TVL1_3DProx(ProxOperator):
         """
         tv_new = self.tvl1_from_grad(self.gradient(new))
         gap = gap.view(-1)
-        d_gap = torch.dot(gap, gap) + 2 * weight * tv_new - input_img_norm + torch.sum(new * new)
+        d_gap = (
+            torch.dot(gap, gap)
+            + 2 * weight * tv_new
+            - input_img_norm
+            + torch.sum(new * new)
+        )
         return 0.5 * d_gap
 
     def prox(self, x: torch.Tensor, lr: float) -> torch.Tensor:
@@ -106,9 +117,8 @@ class TVL1_3DProx(ProxOperator):
         if self.shape and x.shape != self.shape:
             x = x.reshape(self.shape)
         input_img_norm = torch.norm(x) ** 2
-        lipschitz_constant = 1.1 * (
-                4 * 3)
-        negated_output = - x
+        lipschitz_constant = 1.1 * (4 * 3)
+        negated_output = -x
         output = torch.zeros_like(x)
         grad_aux = torch.zeros_like(self.gradient(x))
         grad_im = torch.zeros_like(grad_aux)
@@ -119,14 +129,14 @@ class TVL1_3DProx(ProxOperator):
         while i < self.max_iter:
             # tv_prev = self.tv_from_grad(self.gradient(output))
             grad_tmp = self.gradient(negated_output)
-            grad_tmp *= 1. / (lipschitz_constant * weight)
+            grad_tmp *= 1.0 / (lipschitz_constant * weight)
             grad_aux += grad_tmp
             grad_tmp = self._projector_on_tvl1_dual(grad_aux)
 
             # Careful, in the next few lines, grad_tmp and grad_aux are a
             # view on the same array, as _projector_on_tvl1_dual returns a view
             # on the input array
-            t_new = 0.5 * (1 + sqrt(1 + 4 * t ** 2))
+            t_new = 0.5 * (1 + sqrt(1 + 4 * t**2))
             t_factor = (t - 1) / t_new
             if fista:
                 # fista
@@ -140,8 +150,10 @@ class TVL1_3DProx(ProxOperator):
             negated_output = gap - x
             if i % 4 == 0:
                 old_dgap = dgap
-                dgap = self._dual_gap_prox_tvl1(input_img_norm, -negated_output, gap, weight, l1_ratio=self.l1_ratio)
-                if dgap < 5.e-5:
+                dgap = self._dual_gap_prox_tvl1(
+                    input_img_norm, -negated_output, gap, weight, l1_ratio=self.l1_ratio
+                )
+                if dgap < 5.0e-5:
                     break
                 if old_dgap < dgap:
                     fista = False
@@ -179,6 +191,6 @@ class TVL1_3DProx(ProxOperator):
             float: The TV value computed from the gradients.
         """
         grad_x, grad_y, grad_z = gradients[0], gradients[1], gradients[2]
-        tv = torch.sum(torch.sqrt(grad_x ** 2 + grad_y ** 2 + grad_z ** 2))
+        tv = torch.sum(torch.sqrt(grad_x**2 + grad_y**2 + grad_z**2))
         l1 = torch.sum(torch.abs(gradients[-1]))
         return tv + l1

@@ -22,7 +22,7 @@ def test_total_variation_2d_prox():
 
     # Gradient Test
     gradient = tv.gradient(x)
-    assert gradient.shape == (2, p, p)
+    assert gradient.shape == (3, p, p)
     print("Gradient Test Passed!")
 
     # Divergence Test

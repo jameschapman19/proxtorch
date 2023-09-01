@@ -29,24 +29,68 @@ df = pd.DataFrame(columns=["Dimension", "Time", "Method"])
 for dim in dims:
     for _ in range(n_repeats):
         x = np.random.rand(dim, dim, dim)
-        x_torch_cpu = torch.tensor(x, device='cpu', dtype=torch.float32)
+        x_torch_cpu = torch.tensor(x, device="cpu", dtype=torch.float32)
         x_torch_gpu = torch.tensor(x, device=device, dtype=torch.float32)
 
-        tvl1_proxtorch = TVL1_3DProx(alpha=1.0, shape=(dim, dim, dim), l1_ratio=0.5).prox
+        tvl1_proxtorch = TVL1_3DProx(
+            alpha=1.0, shape=(dim, dim, dim), l1_ratio=0.5
+        ).prox
 
         # Appending results to the dataframe using pd.concat()
-        df = pd.concat([df, pd.DataFrame([{"Dimension": dim,
-                                           "Time": time_function_call(tvl1_proxtorch, x_torch_cpu, 1.0),
-                                           "Method": "ProxTorch CPU"}])], ignore_index=True)
+        df = pd.concat(
+            [
+                df,
+                pd.DataFrame(
+                    [
+                        {
+                            "Dimension": dim,
+                            "Time": time_function_call(
+                                tvl1_proxtorch, x_torch_cpu, 1.0
+                            ),
+                            "Method": "ProxTorch CPU",
+                        }
+                    ]
+                ),
+            ],
+            ignore_index=True,
+        )
 
-        df = pd.concat([df, pd.DataFrame([{"Dimension": dim,
-                                           "Time": time_function_call(_prox_tvl1, x, l1_ratio=0.5, weight=1.0),
-                                           "Method": "Nilearn"}])], ignore_index=True)
+        df = pd.concat(
+            [
+                df,
+                pd.DataFrame(
+                    [
+                        {
+                            "Dimension": dim,
+                            "Time": time_function_call(
+                                _prox_tvl1, x, l1_ratio=0.5, weight=1.0
+                            ),
+                            "Method": "Nilearn",
+                        }
+                    ]
+                ),
+            ],
+            ignore_index=True,
+        )
 
         if device.type == "cuda":
-            df = pd.concat([df, pd.DataFrame([{"Dimension": dim,
-                                               "Time": time_function_call(tvl1_proxtorch, x_torch_gpu, 1.0),
-                                               "Method": "ProxTorch GPU"}])], ignore_index=True)
+            df = pd.concat(
+                [
+                    df,
+                    pd.DataFrame(
+                        [
+                            {
+                                "Dimension": dim,
+                                "Time": time_function_call(
+                                    tvl1_proxtorch, x_torch_gpu, 1.0
+                                ),
+                                "Method": "ProxTorch GPU",
+                            }
+                        ]
+                    ),
+                ],
+                ignore_index=True,
+            )
 
 plt.figure(figsize=(10, 6))
 sns.lineplot(data=df, x="Dimension", y="Time", hue="Method", marker="o", errorbar="sd")

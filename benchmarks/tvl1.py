@@ -33,9 +33,7 @@ for dim in dims:
         x_torch_cpu = torch.tensor(x, device="cpu", dtype=torch.float32)
         x_torch_gpu = torch.tensor(x, device=device, dtype=torch.float32)
 
-        tvl1_proxtorch = TVL1_3DProx(
-            alpha=1.0, l1_ratio=0.5
-        ).prox
+        tvl1_proxtorch = TVL1_3DProx(alpha=1.0, l1_ratio=0.5).prox
 
         # Appending results to the dataframe using pd.concat()
         df = pd.concat(

@@ -48,4 +48,4 @@ class L1Ball(Constraint):
         Returns:
             bool: True if L1-norm of tensor is less than or equal to `s`, False otherwise.
         """
-        return torch.norm(x, p=1) <= self.s
+        return torch.linalg.norm(x.reshape(-1), ord=1) <= self.s

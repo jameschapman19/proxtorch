@@ -11,6 +11,7 @@ from .tracenorm import TraceNormProx, NuclearNormProx
 from .fused_lasso import FusedLassoProx
 from .huber import HuberProx
 from .dummy import DummyProx
+from .graphnet import GraphNet3DProx, GraphNet2DProx
 
 __all__ = [
     "L1Prox",
@@ -26,6 +27,7 @@ __all__ = [
     "NuclearNormProx",
     "FusedLassoProx",
     "HuberProx",
-    "L0Prox",
     "DummyProx",
+    "GraphNet3DProx",
+    "GraphNet2DProx",
 ]

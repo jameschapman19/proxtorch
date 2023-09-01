@@ -44,4 +44,4 @@ class L0Ball(Constraint):
         Returns:
             bool: True if tensor has at most `s` non-zero elements, False otherwise.
         """
-        return torch.linalg.norm(x, 0) <= self.s
+        return torch.linalg.norm(x.reshape(-1), 0) <= self.s

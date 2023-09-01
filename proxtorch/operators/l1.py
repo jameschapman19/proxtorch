@@ -33,4 +33,4 @@ class L1Prox(ProxOperator):
         return 0
 
     def _nonsmooth(self, x):
-        return self.alpha * torch.linalg.norm(x, 1)
+        return self.alpha * torch.linalg.norm(x.reshape(-1), ord=1)

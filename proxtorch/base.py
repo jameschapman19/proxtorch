@@ -41,7 +41,6 @@ class ProxOperator:
         """
         return 0
 
-    @torch.no_grad()
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         r"""Nonsmooth part of the operator.
 
@@ -68,7 +67,10 @@ class ProxOperator:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        return self._smooth(x) + self._nonsmooth(x)
+        smooth = self._smooth(x)
+        with torch.no_grad():
+            nonsmooth = self._nonsmooth(x)
+        return smooth + nonsmooth
 
 
 class Constraint:

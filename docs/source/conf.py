@@ -115,3 +115,4 @@ html_css_files = ["custom.css"]
 #
 # html_sidebars = {}
 html_logo = "proxtorch-logo.jpg"
+html_favicon = "favicon.png"

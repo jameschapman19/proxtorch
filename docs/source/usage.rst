@@ -51,4 +51,4 @@ Venturing into ProxTorch is a straightforward process. Here's your primer:
 Broadening Your Scope
 -------------------------
 
-ProxTorch flaunts a comprehensive library of proximal operators and constraints, fit for diverse optimization riddles. Dive into the API Reference to uncover its full power. As you navigate, you'll encounter tools designed for nuanced problem architectures, enabling you to leverage the might of proximal strategies across varied optimization scenarios.
+ProxTorch offers a comprehensive library of proximal operators and constraints suitable for various optimization challenges. Explore the API Reference for detailed insights. Throughout the documentation, you'll find tools tailored for specific problem structures, allowing you to use proximal strategies in different optimization settings.

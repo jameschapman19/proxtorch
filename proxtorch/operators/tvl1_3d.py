@@ -5,10 +5,12 @@ from proxtorch.base import ProxOperator
 import torch
 import torch.nn.functional as F
 
+
 def get_padding_tuple(dim_index, ndim):
     padding_tuple = [0] * (ndim * 2)
     padding_tuple[-2 * dim_index - 1] = 1
     return tuple(padding_tuple)
+
 
 class TVL1_3DProx(ProxOperator):
     def __init__(
@@ -39,7 +41,9 @@ class TVL1_3DProx(ProxOperator):
         for d in range(x.dim()):
             # torch.diff outputs a tensor with one less element along the specified dimension
             # we pad the output with zeros to match the shape of the input
-            gradients[d, ...] = F.pad(torch.diff(x, dim=d, n=1), pad=get_padding_tuple(d, x.dim()))
+            gradients[d, ...] = F.pad(
+                torch.diff(x, dim=d, n=1), pad=get_padding_tuple(d, x.dim())
+            )
 
         gradients[:-1] *= 1.0 - self.l1_ratio
 
@@ -191,7 +195,6 @@ class TVL1_3DProx(ProxOperator):
         Returns:
             float: The TV value computed from the gradients.
         """
-        tv = torch.sum(torch.sqrt(torch.sum(gradients[:-1] * gradients[:-1],
-                                    dim=0)))
+        tv = torch.sum(torch.sqrt(torch.sum(gradients[:-1] * gradients[:-1], dim=0)))
         l1 = torch.sum(torch.abs(gradients[-1]))
         return tv + l1

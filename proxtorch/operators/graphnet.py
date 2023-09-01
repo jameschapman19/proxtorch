@@ -14,12 +14,13 @@ class GraphNet3DProx(TVL1_3DProx):
     def _smooth(self, x: torch.Tensor) -> torch.Tensor:
         grad = self.gradient(x)
         # norm of the gradient
-        norm = torch.norm(grad)**2
+        norm = torch.norm(grad) ** 2
         return norm
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         l1 = self.l1_prox(x)
         return l1
+
 
 class GraphNet2DProx(GraphNet3DProx, TVL1_2DProx):
     pass

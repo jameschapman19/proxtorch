@@ -5,6 +5,7 @@ torch.manual_seed(0)
 
 def test_matrixfrobeniusprox():
     from proxtorch.operators import Frobenius
+
     alpha = 0.1
     prox = Frobenius(alpha=alpha)
     x = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
@@ -15,6 +16,7 @@ def test_matrixfrobeniusprox():
 
 def test_matrixfrobeniusconstraint():
     from proxtorch.constraints import Frobenius
+
     alpha = 0.1
     constraint = Frobenius(s=alpha)
     x = torch.tensor([[1.0, 2.0], [3.0, 4.0]])

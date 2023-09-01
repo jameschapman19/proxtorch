@@ -70,7 +70,7 @@ In recent years, the advancements in gradient-based optimization, driven primari
 
 `ProxTorch`, optimized for GPUs, was benchmarked against `Nilearn`, a numpy-based module for NeuroImaging data. Our focus: the Total Variation-L1 (TVL1) proximal operator, prized in imaging for preserving edges and promoting sparsity. We assessed performance on CPUs and GPUs across varying input dimensions.
 
-![TVL1 Benchmark Results](TVL1_Benchmark.svg)
+![TVL1 Benchmark Results](joss/TVL1_Benchmark.svg)
 
 Key observations:
 

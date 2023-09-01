@@ -29,6 +29,8 @@ seed_everything(42)
 
 # Load ProxTorch Logo as jpg then convert to grayscale numpy array
 proxtorch_logo = plt.imread("../proxtorch-logo.jpg")
+# Downsample to 64x64
+proxtorch_logo = proxtorch_logo[::4, ::4]
 proxtorch_logo = 1 - np.mean(proxtorch_logo, axis=2)
 # Normalize to [0, 1]
 proxtorch_logo = (proxtorch_logo - np.min(proxtorch_logo)) / (
@@ -41,62 +43,33 @@ class TVL1Restoration(pl.LightningModule):
         super().__init__()
         self.restored = torch.nn.Parameter(torch.zeros(proxtorch_logo.shape))
         self.tvl1_prox = TVL1_2DProx(alpha=alpha, l1_ratio=l1_ratio)
+        self.automatic_optimization = False
 
     def forward(self, x):
         return self.restored
 
     def training_step(self, batch, _):
+        opt = self.optimizers()
+        opt.zero_grad()
         noisy, original = batch
         y_hat = self.restored
         loss = torch.sum((y_hat - noisy) ** 2)
-        self.log("fidelity_loss", loss)
         tv_loss = self.tvl1_prox(self.restored)
-        self.log("tvl1_loss", tv_loss)
-        return loss
-
-    def configure_optimizers(self):
-        return optim.SGD(self.parameters(), lr=0.01)
-
-    def on_train_batch_end(self, _, __, batch_idx: int):
+        self.manual_backward(loss)
+        opt.step()
         with torch.no_grad():
             optimizer = self.trainer.optimizers[0]
             self.restored.data = self.tvl1_prox.prox(
                 self.restored.data, optimizer.param_groups[0]["lr"]
             )
 
-
-class TVRestoration(pl.LightningModule):
-    def __init__(self, alpha):
-        super().__init__()
-        self.restored = torch.nn.Parameter(torch.zeros(proxtorch_logo.shape))
-        self.tv_prox = TV_2DProx(alpha=alpha)
-
-    def forward(self, x):
-        return self.restored
-
-    def training_step(self, batch, _):
-        noisy, original = batch
-        y_hat = self.restored
-        loss = torch.sum((y_hat - noisy) ** 2)
-        self.log("fidelity_loss", loss)
-        tv_loss = self.tv_prox(self.restored)
-        self.log("tv_loss", tv_loss)
-        return loss
-
     def configure_optimizers(self):
         return optim.SGD(self.parameters(), lr=0.01)
-
-    def on_train_batch_end(self, _, __, batch_idx: int):
-        with torch.no_grad():
-            optimizer = self.trainer.optimizers[0]
-            self.restored.data = self.tv_prox.prox(
-                self.restored.data, optimizer.param_groups[0]["lr"]
-            )
 
 
 # Data Preparation
 noisy_logo = proxtorch_logo + np.random.normal(
-    loc=0, scale=0.2, size=proxtorch_logo.shape
+    loc=0, scale=0.1, size=proxtorch_logo.shape
 )
 dataset = TensorDataset(
     torch.tensor(noisy_logo).unsqueeze(0), torch.tensor(proxtorch_logo).unsqueeze(0)
@@ -104,13 +77,13 @@ dataset = TensorDataset(
 loader = DataLoader(dataset, batch_size=1)
 
 # Model Initialization
-tv_l1_model = TVL1Restoration(alpha=0.5, l1_ratio=0.5)
-tv_model = TVRestoration(alpha=0.5)
+tv_l1_model = TVL1Restoration(alpha=0.2, l1_ratio=0.05)
+tv_model = TVL1Restoration(alpha=0.2, l1_ratio=0.0)
 
 # Training
-trainer = pl.Trainer(max_epochs=200)
+trainer = pl.Trainer(max_epochs=50)
 trainer.fit(tv_model, loader)
-trainer = pl.Trainer(max_epochs=200)
+trainer = pl.Trainer(max_epochs=50)
 trainer.fit(tv_l1_model, loader)
 
 

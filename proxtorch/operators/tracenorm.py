@@ -29,7 +29,7 @@ class TraceNormProx(ProxOperator):
         s = torch.clamp(s - self.alpha * tau, min=0)
         return u @ torch.diag(s) @ v.T
 
-    def __call__(self, x: torch.Tensor) -> float:
+    def _nonsmooth(self, x: torch.Tensor) -> float:
         r"""
         Compute the trace norm regularization.
 
@@ -39,7 +39,7 @@ class TraceNormProx(ProxOperator):
         Returns:
             float: Trace norm regularization term.
         """
-        return self.alpha * torch.sum(torch.svd(x).S)
+        return self.alpha * torch.linalg.norm(x, "nuc")
 
 
 NuclearNormProx = TraceNormProx

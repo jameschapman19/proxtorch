@@ -24,15 +24,3 @@ class DummyProx(ProxOperator):
             torch.Tensor: Resultant tensor after applying the proximal operator.
         """
         return x
-
-    def __call__(self, x: torch.Tensor) -> float:
-        r"""
-        Compute the L1Prox norm.
-
-        Args:
-            x (torch.Tensor): Input tensor.
-
-        Returns:
-            float: The L1Prox norm value.
-        """
-        return 0.0

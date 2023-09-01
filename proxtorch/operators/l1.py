@@ -29,14 +29,8 @@ class L1Prox(ProxOperator):
         """
         return torch.sign(x) * torch.clamp(torch.abs(x) - tau * self.alpha, min=0)
 
-    def __call__(self, x: torch.Tensor) -> float:
-        r"""
-        Compute the L1Prox norm.
+    def _smooth(self, x):
+        return 0
 
-        Args:
-            x (torch.Tensor): Input tensor.
-
-        Returns:
-            float: The L1Prox norm value.
-        """
-        return torch.sum(torch.abs(x)) * self.alpha
+    def _nonsmooth(self, x):
+        return self.alpha * torch.linalg.norm(x, 1)

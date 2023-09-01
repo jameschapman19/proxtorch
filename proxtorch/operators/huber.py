@@ -30,7 +30,7 @@ class HuberProx(ProxOperator):
         x[cond3] = x[cond3] + tau * self.alpha * self.delta
         return x
 
-    def __call__(self, x: Tensor) -> float:
+    def _nonsmooth(self, x: Tensor) -> float:
         r"""Compute the Huber penalty for a given input tensor."""
         cond1 = x.abs() <= self.delta
         cond2 = ~cond1

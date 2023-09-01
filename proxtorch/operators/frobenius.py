@@ -27,7 +27,7 @@ class FrobeniusProx(ProxOperator):
         """
         return x / (1.0 + self.alpha * tau)
 
-    def __call__(self, x: torch.Tensor) -> float:
+    def _nonsmooth(self, x: torch.Tensor) -> float:
         r"""
         Compute the Frobenius norm regularization.
 

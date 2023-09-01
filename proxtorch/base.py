@@ -27,6 +27,35 @@ class ProxOperator:
         """
         raise NotImplementedError("Subclasses must implement the 'prox' method.")
 
+    def _smooth(self, x: torch.Tensor) -> torch.Tensor:
+        r"""Smooth part of the operator.
+
+        Args:
+            x (torch.Tensor): Input tensor.
+
+        Returns:
+            torch.Tensor: Result of the smooth part.
+
+        Raises:
+            NotImplementedError: If the method is not implemented in a subclass.
+        """
+        return 0
+
+    @torch.no_grad()
+    def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
+        r"""Nonsmooth part of the operator.
+
+        Args:
+            x (torch.Tensor): Input tensor.
+
+        Returns:
+            torch.Tensor: Result of the nonsmooth part.
+
+        Raises:
+            NotImplementedError: If the method is not implemented in a subclass.
+        """
+        return 0
+
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
         r"""Function call to evaluate the operator.
 
@@ -39,7 +68,7 @@ class ProxOperator:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        raise NotImplementedError("Subclasses must implement the '__call__' method.")
+        return self._smooth(x) + self._nonsmooth(x)
 
 
 class Constraint:

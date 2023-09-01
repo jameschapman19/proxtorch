@@ -39,7 +39,7 @@ class GroupLassoProx(ProxOperator):
 
         return result
 
-    def __call__(self, x: torch.Tensor) -> torch.Tensor:
+    def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         r"""Function call to evaluate the Group Lasso penalty.
 
         Args:

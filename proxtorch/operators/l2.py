@@ -29,14 +29,8 @@ class L2Prox(ProxOperator):
         """
         return x / (1.0 + self.alpha * tau)
 
-    def __call__(self, x: torch.Tensor) -> float:
-        r"""
-        Compute the L2Prox norm.
+    def _smooth(self, x):
+        return 0.5 * self.alpha * torch.linalg.norm(x, 2)**2
 
-        Args:
-            x (torch.Tensor): Input tensor.
-
-        Returns:
-            float: The L2Prox norm value.
-        """
-        return 0.5 * self.alpha * torch.norm(x).pow(2)
+    def _nonsmooth(self, x):
+        return 0

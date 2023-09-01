@@ -5,12 +5,15 @@ from proxtorch.base import ProxOperator
 import torch
 import torch.nn.functional as F
 
+def get_padding_tuple(dim_index, ndim):
+    padding_tuple = [0] * (ndim * 2)
+    padding_tuple[-2 * dim_index - 1] = 1
+    return tuple(padding_tuple)
 
 class TVL1_3DProx(ProxOperator):
     def __init__(
         self,
         alpha: float,
-        shape=None,
         max_iter: int = 200,
         tol: float = 1e-4,
         l1_ratio=0.0,
@@ -28,16 +31,20 @@ class TVL1_3DProx(ProxOperator):
         self.alpha = alpha
         self.max_iter = max_iter
         self.tol = tol
-        self.shape = shape
         self.l1_ratio = l1_ratio
 
-    def gradient(self, x: torch.Tensor) -> torch.Tensor:
-        grad_x = F.pad(x[1:, :, :] - x[:-1, :, :], (0, 0, 0, 0, 0, 1))
-        grad_y = F.pad(x[:, 1:, :] - x[:, :-1, :], (0, 0, 0, 1, 0, 0))
-        grad_z = F.pad(x[:, :, 1:] - x[:, :, :-1], (0, 1, 0, 0, 0, 0))
-        grad_l1 = self.l1_ratio * x
+    def gradient(self, x):
+        gradients = torch.zeros((x.dim() + 1,) + x.shape, device=x.device)
+        # for each dimension compute the gradient using torch.diff
+        for d in range(x.dim()):
+            # torch.diff outputs a tensor with one less element along the specified dimension
+            # we pad the output with zeros to match the shape of the input
+            gradients[d, ...] = F.pad(torch.diff(x, dim=d, n=1), pad=get_padding_tuple(d, x.dim()))
 
-        return torch.stack([grad_x, grad_y, grad_z, grad_l1], dim=0)
+        gradients[:-1] *= 1.0 - self.l1_ratio
+
+        gradients[-1] = self.l1_ratio * x
+        return gradients
 
     def divergence(self, p: torch.Tensor) -> torch.Tensor:
         div_x = torch.zeros_like(p[-1])
@@ -113,9 +120,6 @@ class TVL1_3DProx(ProxOperator):
         fista = True
         weight = self.alpha * lr
         input_shape = x.shape
-        # check if x has shape self.shape if not try to reshape
-        if self.shape and x.shape != self.shape:
-            x = x.reshape(self.shape)
         input_img_norm = torch.norm(x) ** 2
         lipschitz_constant = 1.1 * (4 * 3)
         negated_output = -x
@@ -173,9 +177,6 @@ class TVL1_3DProx(ProxOperator):
         Returns:
             torch.Tensor: The TV of the tensor x.
         """
-        # Check if self.shape is not None and x has different shape, then try to reshape
-        if self.shape and x.shape != self.shape:
-            x = x.reshape(self.shape)
         gradients = self.gradient(x)
         return self.tvl1_from_grad(gradients) * self.alpha
 
@@ -190,7 +191,7 @@ class TVL1_3DProx(ProxOperator):
         Returns:
             float: The TV value computed from the gradients.
         """
-        grad_x, grad_y, grad_z = gradients[0], gradients[1], gradients[2]
-        tv = torch.sum(torch.sqrt(grad_x**2 + grad_y**2 + grad_z**2))
+        tv = torch.sum(torch.sqrt(torch.sum(gradients[:-1] * gradients[:-1],
+                                    dim=0)))
         l1 = torch.sum(torch.abs(gradients[-1]))
         return tv + l1

@@ -1,4 +1,3 @@
-from .l0 import L0Prox
 from .l1 import L1Prox
 from .l2 import L2Prox
 from .elastic_net import ElasticNetProx

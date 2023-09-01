@@ -66,7 +66,19 @@ In recent years, the advancements in gradient-based optimization, driven primari
 | GraphNet3DProx        | 3D graph net regularizer                   |
 | GraphNet2DProx        | 2D graph net regularizer                   |
 
+## **GPU Acceleration: ProxTorch vs. Nilearn Benchmark**
 
+`ProxTorch`, optimized for GPUs, was benchmarked against `Nilearn`, a numpy-based module for NeuroImaging data. Our focus: the Total Variation-L1 (TVL1) proximal operator, prized in imaging for preserving edges and promoting sparsity. We assessed performance on CPUs and GPUs across varying input dimensions.
+
+![TVL1 Benchmark Results](TVL1_Benchmark.svg)
+
+Key observations:
+
+1. **On CPUs**: `ProxTorch` consistently outperforms `Nilearn`, highlighting its superior optimization even without GPU advantages.
+   
+2. **GPU Boost**: With GPU, `ProxTorch` scales impressively as data dimensions grow, emphasizing the vast performance benefits of GPU acceleration.
+   
+3. **Dimensional Considerations**: While GPUs benefit all data sizes, the advantage becomes especially pronounced for larger datasets, reinforcing `ProxTorch` as the go-to for hefty optimization tasks.
 
 # Documentation
 

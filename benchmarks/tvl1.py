@@ -99,5 +99,5 @@ plt.title("Performance comparison of TV-L1 Proximal Operator solvers with Uncert
 plt.xlabel("Dimension (size of the cubic array)")
 plt.ylabel("Average Execution Time (seconds)")
 plt.tight_layout()
-plt.savefig("joss/TVL1_Benchmark.svg")
+plt.savefig("TVL1_Benchmark.svg")
 plt.show()

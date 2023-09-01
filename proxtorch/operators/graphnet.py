@@ -1,6 +1,8 @@
 import torch
 
-from proxtorch.operators import L1Prox, TVL1_3DProx, TVL1_2DProx
+from proxtorch.operators.tvl1_3d import TVL1_3DProx
+from proxtorch.operators.tvl1_2d import TVL1_2DProx
+from proxtorch.operators.l1 import L1Prox
 
 
 class GraphNet3DProx(TVL1_3DProx):

@@ -21,16 +21,3 @@ class TVL1_2DProx(TVL1_3DProx):
         div_y[:, -1].sub_(p[1, :, -2])
 
         return (div_x + div_y) * (1 - self.l1_ratio) - self.l1_ratio * p[-1]
-
-    def __call__(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Compute the Total Variation (TV) for a given tensor x.
-
-        Args:
-            x (torch.Tensor): Input tensor.
-
-        Returns:
-            torch.Tensor: The TV of the tensor x.
-        """
-        gradients = self.gradient(x)
-        return self.tvl1_from_grad(gradients) * self.alpha

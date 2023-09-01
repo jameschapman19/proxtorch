@@ -68,8 +68,7 @@ class ProxOperator:
             NotImplementedError: If the method is not implemented in a subclass.
         """
         smooth = self._smooth(x)
-        with torch.no_grad():
-            nonsmooth = self._nonsmooth(x)
+        nonsmooth = self._nonsmooth(x).detach()
         return smooth + nonsmooth
 
 

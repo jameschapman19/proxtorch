@@ -167,7 +167,7 @@ class TVL1_3DProx(ProxOperator):
         output = x - weight * self.divergence(grad_im)
         return output.reshape(input_shape)
 
-    def __call__(self, x: torch.Tensor) -> torch.Tensor:
+    def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         """
         Compute the Total Variation (TV) for a given tensor x.
 

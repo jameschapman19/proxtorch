@@ -1,12 +1,13 @@
-import numpy as np
-import torch
 import time
+
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
 import pandas as pd
+import seaborn as sns
+import torch
+from nilearn.decoding.proximal_operators import _prox_tvl1
 
 from proxtorch.operators import TVL1_3DProx
-from nilearn.decoding.proximal_operators import _prox_tvl1
 
 sns.set_context("paper")
 sns.set_style("whitegrid")

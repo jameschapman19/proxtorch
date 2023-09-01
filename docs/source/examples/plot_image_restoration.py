@@ -14,13 +14,14 @@ Dependencies:
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
+import pytorch_lightning as pl
 import torch
 import torch.optim as optim
-import pytorch_lightning as pl
-import matplotlib.pyplot as plt
 from pytorch_lightning import seed_everything
 from torch.utils.data import DataLoader, TensorDataset
+
 from proxtorch.operators import TV_2DProx, TVL1_2DProx
 
 # Set seed
@@ -31,7 +32,7 @@ proxtorch_logo = plt.imread("../proxtorch-logo.jpg")
 proxtorch_logo = 1 - np.mean(proxtorch_logo, axis=2)
 # Normalize to [0, 1]
 proxtorch_logo = (proxtorch_logo - np.min(proxtorch_logo)) / (
-    np.max(proxtorch_logo) - np.min(proxtorch_logo)
+        np.max(proxtorch_logo) - np.min(proxtorch_logo)
 )
 
 

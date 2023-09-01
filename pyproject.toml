@@ -11,14 +11,14 @@ keywords = ["proximal", "optimisation", "pytorch", "proximal operators"]
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0.0"
 torch = [
-     {version = "^2.0.1", platform = "darwin"},
-     {version = "^2.0.1", platform = "linux", source = "torch"},
-     {version = "^2.0.1", platform = "win32", source = "torch"}, ]
+    { version = "^2.0.1", platform = "darwin" },
+    { version = "^2.0.1", platform = "linux", source = "torch" },
+    { version = "^2.0.1", platform = "win32", source = "torch" }, ]
 
 [[tool.poetry.source]]
- name = "torch"
- url = "https://download.pytorch.org/whl/cpu"
- priority = "explicit"
+name = "torch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
 
 [tool.poetry.dev-dependencies]
 black = "*"

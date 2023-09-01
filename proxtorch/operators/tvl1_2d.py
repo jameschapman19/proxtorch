@@ -1,7 +1,5 @@
-from math import sqrt
-
 import torch
-import torch.nn.functional as F
+
 from proxtorch.operators.tvl1_3d import TVL1_3DProx
 
 

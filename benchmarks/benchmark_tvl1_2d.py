@@ -1,7 +1,7 @@
 import time
+
 import numpy as np
 import torch
-
 from proxtorch.proxtorch.operators.tvl1_2d import TVL1_2D
 from skprox.operators import TVL1
 

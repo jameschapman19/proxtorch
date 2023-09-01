@@ -1,7 +1,6 @@
 import torch
+
 from proxtorch.base import Constraint
-import torch
-from proxtorch.base import ProxOperator
 
 
 class L1Ball(Constraint):

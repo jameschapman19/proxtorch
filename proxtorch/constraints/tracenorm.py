@@ -1,5 +1,6 @@
-from proxtorch.base import Constraint
 import torch
+
+from proxtorch.base import Constraint
 
 
 class TraceNormConstraint(Constraint):

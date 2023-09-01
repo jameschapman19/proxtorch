@@ -1,7 +1,7 @@
+import torch
 from torch import Tensor
 
 from proxtorch.base import Constraint
-import torch
 
 
 class NonNegativeConstraint(Constraint):

@@ -2,7 +2,7 @@
 
 <img src="docs/source/proxtorch-logo.jpg" alt="ProxTorch Logo" width="200"/>
 
-# ProxTorch 
+# ProxTorch
 
 **Unleashing Proximal Gradient Descent on PyTorch** 🚀
 
@@ -14,13 +14,16 @@
 </div>
 
 🔍 **What is ProxTorch?**  
-Dive into a rich realm of proximal operators and constraints with `ProxTorch`, a state-of-the-art Python library crafted on PyTorch. Whether it's optimization challenges or the complexities of machine learning, `ProxTorch` is designed for speed, efficiency, and seamless GPU integration.
+Dive into a rich realm of proximal operators and constraints with `ProxTorch`, a state-of-the-art Python library crafted
+on PyTorch. Whether it's optimization challenges or the complexities of machine learning, `ProxTorch` is designed for
+speed, efficiency, and seamless GPU integration.
 
 ## ✨ **Features**
 
 - **🚀 GPU-Boosted**: Experience lightning-fast computations with extensive CUDA support.
 - **🔥 PyTorch Synergy**: Naturally integrates with all your PyTorch endeavours.
-- **📚 Expansive Library**: From elemental norms (`L0`, `L1`, `L2`, `L∞`) to advanced regularizations like Total Variation and Fused Lasso.
+- **📚 Expansive Library**: From elemental norms (`L0`, `L1`, `L2`, `L∞`) to advanced regularizations like Total
+  Variation and Fused Lasso.
 - **🤝 User-Friendly**: Jump right in! Intuitive design means minimal disruptions to your existing projects.
 
 ## 🛠 **Installation**
@@ -58,7 +61,8 @@ print("Prox Result:", result)
 
 ### **Regularizers**
 
-- **L1**, **L2 (Ridge)**, **ElasticNet**, **GroupLasso**, **TV** (includes TV_2D, TV_3D, TVL1_2D, TVL1_3D), **Frobenius**  
+- **L1**, **L2 (Ridge)**, **ElasticNet**, **GroupLasso**, **TV** (includes TV_2D, TV_3D, TVL1_2D, TVL1_3D), **Frobenius
+  **
 - **Norms**: TraceNorm, NuclearNorm
 - **FusedLasso**, **Huber**
 
@@ -77,7 +81,8 @@ Explore the comprehensive documentation on [Read the Docs](https://proxtorch.rea
 - [pyproximal](https://github.com/PyLops/pyproximal)
 - [ProxGradPyTorch](https://github.com/KentonMurray/ProxGradPytorch)
 
-We're thrilled to introduce `ProxTorch` as an exciting addition to the PyTorch ecosystem. We're confident you'll love it!
+We're thrilled to introduce `ProxTorch` as an exciting addition to the PyTorch ecosystem. We're confident you'll love
+it!
 
 ## 🤝 **Contribute to the ProxTorch Revolution**
 
@@ -86,4 +91,5 @@ Got ideas? Join our vibrant community and make `ProxTorch` even better!
 ## 📜 **License**
 
 `ProxTorch` is proudly released under the [MIT License](link-to-license-file).
+
 ```

@@ -1,5 +1,6 @@
-from proxtorch.constraints import LInfinityBall
 import torch
+
+from proxtorch.constraints import LInfinityBall
 
 torch.manual_seed(0)
 

@@ -1,5 +1,6 @@
-from proxtorch.base import ProxOperator
 import torch
+
+from proxtorch.base import ProxOperator
 
 
 class TraceNormProx(ProxOperator):

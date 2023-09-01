@@ -1,7 +1,7 @@
 import torch
 
-from proxtorch.operators import L1Prox
 from proxtorch.constraints import L1Ball
+from proxtorch.operators import L1Prox
 
 torch.manual_seed(0)
 

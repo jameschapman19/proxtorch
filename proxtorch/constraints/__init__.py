@@ -1,12 +1,12 @@
+from .box import BoxConstraint
+from .frobenius import FrobeniusConstraint
 from .l0ball import L0Ball
 from .l1ball import L1Ball
 from .l2ball import L2Ball
 from .lInfinityBall import LInfinityBall
-from .frobenius import FrobeniusConstraint
-from .tracenorm import TraceNormConstraint
-from .box import BoxConstraint
-from .rank import RankConstraint
 from .non_negative import NonNegativeConstraint
+from .rank import RankConstraint
+from .tracenorm import TraceNormConstraint
 
 __all__ = [
     "L0Ball",

@@ -1,4 +1,5 @@
 import torch
+
 from proxtorch.operators import GroupLassoProx
 
 torch.manual_seed(0)

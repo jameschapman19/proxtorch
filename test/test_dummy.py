@@ -1,6 +1,6 @@
-from proxtorch.operators import DummyProx
-
 import torch
+
+from proxtorch.operators import DummyProx
 
 torch.manual_seed(0)
 

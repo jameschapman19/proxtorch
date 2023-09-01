@@ -1,6 +1,6 @@
-from proxtorch.constraints import NonNegativeConstraint
-
 import torch
+
+from proxtorch.constraints import NonNegativeConstraint
 
 torch.manual_seed(0)
 

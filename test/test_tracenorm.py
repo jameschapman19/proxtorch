@@ -1,7 +1,7 @@
 import torch
 
-from proxtorch.operators import TraceNormProx
 from proxtorch.constraints import TraceNormConstraint
+from proxtorch.operators import TraceNormProx
 
 
 def test_tracenormprox():

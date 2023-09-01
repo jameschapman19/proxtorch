@@ -1,5 +1,6 @@
-from proxtorch.constraints import BoxConstraint
 import torch
+
+from proxtorch.constraints import BoxConstraint
 
 torch.manual_seed(0)
 

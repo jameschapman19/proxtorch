@@ -1,6 +1,5 @@
-from proxtorch.operators import GraphNet3DProx
-
 import torch
+
 from proxtorch.operators import GraphNet3DProx
 
 

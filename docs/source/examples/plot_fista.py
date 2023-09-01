@@ -13,11 +13,12 @@ Dependencies:
 """
 import matplotlib.pyplot as plt
 import torch
+import torch.optim as optim
+from pytorch_lightning import seed_everything
 from sklearn.datasets import make_regression
 from torch.nn import Parameter
-from pytorch_lightning import seed_everything
+
 from proxtorch.operators import L1Prox
-import torch.optim as optim
 
 seed_everything(42)
 

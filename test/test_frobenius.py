@@ -1,7 +1,7 @@
 import torch
 
-from proxtorch.operators import FrobeniusProx
 from proxtorch.constraints import FrobeniusConstraint
+from proxtorch.operators import FrobeniusProx
 
 torch.manual_seed(0)
 

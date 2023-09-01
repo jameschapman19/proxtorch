@@ -44,16 +44,17 @@ Dependencies:
 - `pytorch_lightning`
 - `proxtorch`
 """
+import matplotlib.pyplot as plt
+import numpy as np
+import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from pytorch_lightning import seed_everything
+from sklearn.linear_model import Lasso
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
-import numpy as np
-from sklearn.linear_model import Lasso
-import matplotlib.pyplot as plt
-import pytorch_lightning as pl
-from pytorch_lightning import seed_everything
+
 from proxtorch.operators import L1Prox
 
 seed_everything(42)

@@ -1,4 +1,5 @@
 import torch
+
 from proxtorch.base import ProxOperator
 
 

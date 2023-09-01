@@ -2,17 +2,15 @@
 
 import numpy as np
 import torch
-from skimage import data
-
 from proxtorch.proxtorch.operators.tv_2d import TV_2D
 from proxtorch.proxtorch.operators.tvl1_2d import TVL1_2D
+from skimage import data
 
 x = data.camera()
 
 # add noise to cameraman
 x = x / 255
 x_noisy = x + np.random.randn(*x.shape) * 0.1
-
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 

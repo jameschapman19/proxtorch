@@ -1,9 +1,9 @@
 import torch
 
-from proxtorch.operators.tvl1_3d import TVL1_3DProx
+from proxtorch.operators.tvl1_3d import TVL1_3D
 
 
-class TVL1_2DProx(TVL1_3DProx):
+class TVL1_2D(TVL1_3D):
     def divergence(self, p: torch.Tensor) -> torch.Tensor:
         div_x = torch.zeros_like(p[-1])
         div_y = torch.zeros_like(p[-1])

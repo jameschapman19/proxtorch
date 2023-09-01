@@ -18,7 +18,7 @@ from pytorch_lightning import seed_everything
 from sklearn.datasets import make_regression
 from torch.nn import Parameter
 
-from proxtorch.operators import L1Prox
+from proxtorch.operators import L1
 
 seed_everything(42)
 
@@ -32,7 +32,7 @@ X, y = torch.tensor(X, dtype=torch.float32), torch.tensor(y, dtype=torch.float32
 alpha = 0.1  # Regularization parameter for Lasso
 lr = 0.01  # Learning rate
 n_iter = 100  # Number of iterations
-l1_prox = L1Prox(alpha=alpha)
+l1_prox = L1(alpha=alpha)
 
 
 def fista(X, y, l1_prox, lr, n_iter):

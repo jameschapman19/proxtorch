@@ -4,7 +4,7 @@ from torch import Tensor
 from proxtorch.base import Constraint
 
 
-class NonNegativeConstraint(Constraint):
+class NonNegative(Constraint):
     r"""Proximal operator for the non-negative constraint."""
 
     def prox(self, x: Tensor) -> Tensor:

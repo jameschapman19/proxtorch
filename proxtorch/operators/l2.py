@@ -3,11 +3,11 @@ import torch
 from proxtorch.base import ProxOperator
 
 
-class L2Prox(ProxOperator):
+class L2(ProxOperator):
     r"""
-    L2Prox norm proximal operator.
+    L2 norm proximal operator.
 
-    This class provides methods for soft-thresholding and computation of the L2Prox norm.
+    This class provides methods for soft-thresholding and computation of the L2 norm.
 
     Attributes:
         alpha (float): Regularization parameter.

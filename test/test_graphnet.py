@@ -1,6 +1,6 @@
 import torch
 
-from proxtorch.operators import GraphNet3DProx, GraphNet2DProx
+from proxtorch.operators import GraphNet3D, GraphNet2D
 
 
 #
@@ -21,7 +21,7 @@ from proxtorch.operators import GraphNet3DProx, GraphNet2DProx
 #     # define the proximal operator
 #     alpha = 10
 #     l1_ratio = 0.0 # 0.5
-#     prox = GraphNet2DProx(alpha, l1_ratio)
+#     prox = GraphNet2D(alpha, l1_ratio)
 #
 #     # define the objective function
 #     def objective(x):
@@ -59,7 +59,7 @@ from proxtorch.operators import GraphNet3DProx, GraphNet2DProx
 def test_graph_net_3d_prox():
     alpha = 0.1
     l1_ratio = 0.5
-    prox = GraphNet3DProx(alpha, l1_ratio)
+    prox = GraphNet3D(alpha, l1_ratio)
 
     # Test _smooth method
     x = torch.rand(3, 5, 5)
@@ -74,7 +74,7 @@ def test_graph_net_3d_prox():
 def test_graph_net_2d_prox():
     alpha = 0.1
     l1_ratio = 0.5
-    prox = GraphNet2DProx(alpha, l1_ratio)
+    prox = GraphNet2D(alpha, l1_ratio)
 
     # Test _smooth method
     x = torch.rand(3, 5)

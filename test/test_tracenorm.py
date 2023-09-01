@@ -1,13 +1,13 @@
 import torch
 
-from proxtorch.constraints import TraceNormConstraint
-from proxtorch.operators import TraceNormProx
+from proxtorch.constraints import TraceNorm
+from proxtorch.operators import TraceNorm
 
 
 def test_tracenormprox():
     torch.manual_seed(0)
     alpha = 0.1
-    prox = TraceNormProx(alpha=alpha)
+    prox = TraceNorm(alpha=alpha)
     x = torch.rand((3, 3))
     result = prox.prox(x, 0.1)
     # Ensuring the trace norm is less than trace norm of x
@@ -17,7 +17,7 @@ def test_tracenormprox():
 def test_tracenormconstraint():
     torch.manual_seed(0)
     alpha = 2.0
-    constraint = TraceNormConstraint(alpha=alpha)
+    constraint = TraceNorm(alpha=alpha)
     x = torch.rand((3, 3))
     result = constraint.prox(x)
     # Ensuring the trace norm is less than or equal to s

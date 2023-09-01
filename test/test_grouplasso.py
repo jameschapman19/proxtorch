@@ -1,6 +1,6 @@
 import torch
 
-from proxtorch.operators import GroupLassoProx
+from proxtorch.operators import GroupLasso
 
 torch.manual_seed(0)
 
@@ -10,7 +10,7 @@ def test_prox():
     group_sizes = [2, 3]
     x = torch.tensor([1.5, 2.0, -1.0, 0.5, 0.5], dtype=torch.float32)
 
-    operator = GroupLassoProx(lambda_, group_sizes)
+    operator = GroupLasso(lambda_, group_sizes)
     result = operator.prox(x, 1.0)
 
     expected_result = torch.tensor([0.3, 0.4, 0.0, 0.0, 0.0], dtype=torch.float32)
@@ -23,7 +23,7 @@ def test_call():
     group_sizes = [2, 3]
     x = torch.tensor([1.5, 2.0, -1.0, 0.5, 0.5], dtype=torch.float32)
 
-    operator = GroupLassoProx(lambda_, group_sizes)
+    operator = GroupLasso(lambda_, group_sizes)
     penalty = operator(x)
 
     expected_penalty = lambda_ * (torch.norm(x[:2], p=2) + torch.norm(x[2:], p=2))

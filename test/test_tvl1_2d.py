@@ -1,14 +1,14 @@
 import torch
 
-from proxtorch.operators import TVL1_2DProx
+from proxtorch.operators import TVL1_2D
 
 torch.manual_seed(0)
 
 
-# Test the TV_2DProx class
+# Test the TV_2D class
 def test_total_variation_2d_prox():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    tv = TVL1_2DProx(alpha=1e-3, l1_ratio=0.1, max_iter=50)
+    tv = TVL1_2D(alpha=1e-3, l1_ratio=0.1, max_iter=50)
 
     p = 10
 

@@ -1,14 +1,14 @@
 import torch
 
 from proxtorch.constraints import L2Ball
-from proxtorch.operators import L2Prox
+from proxtorch.operators import L2
 
 torch.manual_seed(0)
 
 
 def test_l2prox():
     alpha = 0.1
-    prox = L2Prox(alpha=alpha)
+    prox = L2(alpha=alpha)
     x = torch.tensor([1.0, 2.0, 3.0])
     result = prox.prox(x, 1)
     expected = x / (1.0 + alpha)

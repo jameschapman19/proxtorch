@@ -3,7 +3,7 @@ import torch
 from proxtorch.base import ProxOperator
 
 
-class TraceNormProx(ProxOperator):
+class TraceNorm(ProxOperator):
     r"""
     Proximal operator for the trace norm regularization.
 
@@ -43,4 +43,4 @@ class TraceNormProx(ProxOperator):
         return self.alpha * torch.linalg.norm(x, "nuc")
 
 
-NuclearNormProx = TraceNormProx
+NuclearNorm = TraceNorm

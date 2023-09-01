@@ -3,7 +3,7 @@ import torch
 from proxtorch.base import ProxOperator
 
 
-class ElasticNetProx(ProxOperator):
+class ElasticNet(ProxOperator):
     r"""
     Elastic Net proximal operator.
 
@@ -33,9 +33,9 @@ class ElasticNetProx(ProxOperator):
             torch.Tensor: Resultant tensor after applying the proximal operator.
         """
         return (
-            torch.sign(x)
-            * torch.clamp(torch.abs(x) - self.alpha * self.l1_ratio * tau, min=0)
-            / (1.0 + self.alpha * self.l2_ratio * tau)
+                torch.sign(x)
+                * torch.clamp(torch.abs(x) - self.alpha * self.l1_ratio * tau, min=0)
+                / (1.0 + self.alpha * self.l2_ratio * tau)
         )
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:

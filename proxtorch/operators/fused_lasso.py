@@ -4,7 +4,7 @@ from torch import Tensor
 from proxtorch.base import ProxOperator
 
 
-class FusedLassoProx(ProxOperator):
+class FusedLasso(ProxOperator):
     r"""Proximal operator for the 1D Fused Lasso."""
 
     def __init__(self, alpha: float):

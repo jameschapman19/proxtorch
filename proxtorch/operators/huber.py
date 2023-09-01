@@ -4,7 +4,7 @@ from torch import Tensor
 from proxtorch.base import ProxOperator
 
 
-class HuberProx(ProxOperator):
+class Huber(ProxOperator):
     r"""Proximal operator for the Huber penalty."""
 
     def __init__(self, alpha: float = 1.0, delta: float = 1.0):
@@ -36,7 +36,7 @@ class HuberProx(ProxOperator):
         cond1 = x.abs() <= self.delta
         cond2 = ~cond1
         return self.alpha * (
-            0.5 * (x[cond1] ** 2).sum()
-            + self.delta * x[cond2].abs().sum()
-            - 0.5 * self.delta**2 * cond2.float().sum()
+                0.5 * (x[cond1] ** 2).sum()
+                + self.delta * x[cond2].abs().sum()
+                - 0.5 * self.delta ** 2 * cond2.float().sum()
         )

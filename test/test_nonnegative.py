@@ -1,13 +1,13 @@
 import torch
 
-from proxtorch.constraints import NonNegativeConstraint
+from proxtorch.constraints import NonNegative
 
 torch.manual_seed(0)
 
 
 def test_nonnegativeconstraint():
     x = torch.tensor([[-1.0, 2.0], [3.0, 4.0]])
-    constraint = NonNegativeConstraint()
+    constraint = NonNegative()
     result = constraint.prox(x)
     expected = torch.tensor([[0.0, 2.0], [3.0, 4.0]])
     assert torch.allclose(result, expected)

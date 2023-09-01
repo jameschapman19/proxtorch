@@ -24,7 +24,7 @@ def benchmark_tvl1_vs_proxtorch_tvl2d1():
     x.to(device)
     end_move = time.time()
 
-    # Benchmark TVL1_2DProx
+    # Benchmark TVL1_2D
     tv = TVL1_2D(sigma_l1=sigma_l1, sigma_tv=sigma_tv, device=device, max_iter=10)
     start_proxtorch = time.time()
     _ = tv.prox(x, 1)
@@ -42,7 +42,7 @@ def benchmark_tvl1_vs_proxtorch_tvl2d1():
 
     # Results
     print("Time to move tensor to device: ", end_move - start_move)
-    print("TVL1_2DProx time: ", end_proxtorch - start_proxtorch)
+    print("TVL1_2D time: ", end_proxtorch - start_proxtorch)
     print("TVL1 time: ", end_tvl1 - start_tvl1)
 
 

@@ -1,7 +1,7 @@
-from proxtorch.operators.tvl1_3d import TVL1_3DProx
+from proxtorch.operators.tvl1_3d import TVL1_3D
 
 
-class TV_3DProx(TVL1_3DProx):
+class TV_3D(TVL1_3D):
     def __init__(self, alpha: float, max_iter: int = 200, tol: float = 1e-4) -> None:
         """
         Initialize the 3D Total Variation proximal operator.

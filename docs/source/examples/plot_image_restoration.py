@@ -2,7 +2,7 @@
 Image Restoration: ProxTorch Logo via TV and TV-L1 Regularization
 ==================================================================
 
-Using ProxTorch's TV_2DProx and TVL1_2DProx operators, this example demonstrates image restoration
+Using ProxTorch's TV_2D and TVL1_2D operators, this example demonstrates image restoration
 of a noisy ProxTorch logo through TV and TV-L1 regularization.
 
 Dependencies:
@@ -22,7 +22,7 @@ import torch.optim as optim
 from pytorch_lightning import seed_everything
 from torch.utils.data import DataLoader, TensorDataset
 
-from proxtorch.operators import TV_2DProx, TVL1_2DProx
+from proxtorch.operators import TVL1_2D
 
 # Set seed
 seed_everything(42)
@@ -34,7 +34,7 @@ proxtorch_logo = proxtorch_logo[::4, ::4]
 proxtorch_logo = 1 - np.mean(proxtorch_logo, axis=2)
 # Normalize to [0, 1]
 proxtorch_logo = (proxtorch_logo - np.min(proxtorch_logo)) / (
-    np.max(proxtorch_logo) - np.min(proxtorch_logo)
+        np.max(proxtorch_logo) - np.min(proxtorch_logo)
 )
 
 
@@ -42,7 +42,7 @@ class TVL1Restoration(pl.LightningModule):
     def __init__(self, alpha, l1_ratio):
         super().__init__()
         self.restored = torch.nn.Parameter(torch.zeros(proxtorch_logo.shape))
-        self.tvl1_prox = TVL1_2DProx(alpha=alpha, l1_ratio=l1_ratio)
+        self.tvl1_prox = TVL1_2D(alpha=alpha, l1_ratio=l1_ratio)
         self.automatic_optimization = False
 
     def forward(self, x):

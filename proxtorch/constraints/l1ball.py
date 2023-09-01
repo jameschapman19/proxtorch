@@ -5,10 +5,10 @@ from proxtorch.base import Constraint
 
 class L1Ball(Constraint):
     r"""
-    Projection onto the L1Prox ball.
+    Projection onto the L1 ball.
 
     Attributes:
-        s (float): Radius of the L1Prox ball.
+        s (float): Radius of the L1 ball.
     """
 
     def __init__(self, s: float = 1.0):
@@ -17,7 +17,7 @@ class L1Ball(Constraint):
 
     def prox(self, x: torch.Tensor) -> torch.Tensor:
         r"""
-        Project x onto the L1Prox-ball of radius `s`.
+        Project x onto the L1-ball of radius `s`.
 
         Args:
             x (torch.Tensor): Input tensor.

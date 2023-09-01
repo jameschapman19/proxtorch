@@ -1,13 +1,13 @@
 import torch
 
-from proxtorch.operators import FusedLassoProx
+from proxtorch.operators import FusedLasso
 
 torch.manual_seed(0)
 
 
 def test_fusedlassoprox():
     lambda_ = 0.5
-    prox = FusedLassoProx(lambda_)
+    prox = FusedLasso(lambda_)
     x = torch.tensor([-1.0, 2.0, 0.5, 0.0, -0.2])
 
     result = prox.prox(x, 1)

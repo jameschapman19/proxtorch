@@ -1,13 +1,13 @@
 import torch
 
 from proxtorch.constraints import L1Ball
-from proxtorch.operators import L1Prox
+from proxtorch.operators import L1
 
 torch.manual_seed(0)
 
 
 def test_l1():
-    l1_op = L1Prox(alpha=2.0)
+    l1_op = L1(alpha=2.0)
     x = torch.tensor([1.0, 3.0, -0.5, -2.5])
 
     # Test prox method

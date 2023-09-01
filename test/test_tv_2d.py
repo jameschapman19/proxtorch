@@ -1,14 +1,14 @@
 import torch
 
-from proxtorch.operators import TV_2DProx
+from proxtorch.operators import TV_2D
 
 torch.manual_seed(0)
 
 
-# Test the TV_2DProx class
+# Test the TV_2D class
 def test_total_variation_2d_prox():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    tv = TV_2DProx(0.1, max_iter=1000)
+    tv = TV_2D(0.1, max_iter=1000)
 
     p = 10
 
@@ -54,7 +54,7 @@ def test_total_variation_2d_prox():
 # test that zero is returned when x is zero
 def test_zero():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    tv = TV_2DProx(0.5)
+    tv = TV_2D(0.5)
     x = torch.zeros(10, 10).to(device)
     assert torch.all(tv.prox(x, 1.0) == 0)
     print("Zero test passed!")

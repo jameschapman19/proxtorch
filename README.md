@@ -45,7 +45,7 @@ from proxtorch.operators import L1
 # Define a sample tensor
 x = torch.tensor([0.5, -1.2, 0.3, -0.4, 0.7])
 
-# Initialize the L1Prox proximal operator
+# Initialize the L1 proximal operator
 l1_prox = L1(sigma=0.1)
 
 # Compute the regularization component value

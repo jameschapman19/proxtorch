@@ -1,14 +1,14 @@
 import torch
 
-from proxtorch.operators.tvl1_3d import TVL1_3DProx
-from proxtorch.operators.tvl1_2d import TVL1_2DProx
-from proxtorch.operators.l1 import L1Prox
+from proxtorch.operators.l1 import L1
+from proxtorch.operators.tvl1_2d import TVL1_2D
+from proxtorch.operators.tvl1_3d import TVL1_3D
 
 
-class GraphNet3DProx(TVL1_3DProx):
+class GraphNet3D(TVL1_3D):
     def __init__(self, alpha, l1_ratio):
         super().__init__(alpha=alpha, l1_ratio=l1_ratio)
-        self.l1_prox = L1Prox(alpha * l1_ratio)
+        self.l1_prox = L1(alpha * l1_ratio)
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
         return self.l1_prox.prox(x, tau)
@@ -25,5 +25,5 @@ class GraphNet3DProx(TVL1_3DProx):
         return l1
 
 
-class GraphNet2DProx(GraphNet3DProx, TVL1_2DProx):
+class GraphNet2D(GraphNet3D, TVL1_2D):
     pass

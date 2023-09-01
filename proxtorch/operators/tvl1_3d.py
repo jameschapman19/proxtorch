@@ -12,13 +12,13 @@ def get_padding_tuple(dim_index, ndim):
     return tuple(padding_tuple)
 
 
-class TVL1_3DProx(ProxOperator):
+class TVL1_3D(ProxOperator):
     def __init__(
-        self,
-        alpha: float,
-        max_iter: int = 200,
-        tol: float = 1e-4,
-        l1_ratio=0.0,
+            self,
+            alpha: float,
+            max_iter: int = 200,
+            tol: float = 1e-4,
+            l1_ratio=0.0,
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
@@ -102,10 +102,10 @@ class TVL1_3DProx(ProxOperator):
         tv_new = self.tvl1_from_grad(self.gradient(new))
         gap = gap.view(-1)
         d_gap = (
-            torch.dot(gap, gap)
-            + 2 * weight * tv_new
-            - input_img_norm
-            + torch.sum(new * new)
+                torch.dot(gap, gap)
+                + 2 * weight * tv_new
+                - input_img_norm
+                + torch.sum(new * new)
         )
         return 0.5 * d_gap
 
@@ -143,7 +143,7 @@ class TVL1_3DProx(ProxOperator):
             # Careful, in the next few lines, grad_tmp and grad_aux are a
             # view on the same array, as _projector_on_tvl1_dual returns a view
             # on the input array
-            t_new = 0.5 * (1 + sqrt(1 + 4 * t**2))
+            t_new = 0.5 * (1 + sqrt(1 + 4 * t ** 2))
             t_factor = (t - 1) / t_new
             if fista:
                 # fista

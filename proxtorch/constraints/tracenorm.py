@@ -3,7 +3,7 @@ import torch
 from proxtorch.base import Constraint
 
 
-class TraceNormConstraint(Constraint):
+class TraceNorm(Constraint):
     r"""
     Constraint for trace norm regularization.
 
@@ -53,4 +53,4 @@ class TraceNormConstraint(Constraint):
         return u @ torch.diag(s) @ v.T
 
 
-NuclearNormConstraint = TraceNormConstraint
+NuclearNorm = TraceNorm

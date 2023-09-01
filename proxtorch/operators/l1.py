@@ -3,11 +3,11 @@ import torch
 from proxtorch.base import ProxOperator
 
 
-class L1Prox(ProxOperator):
+class L1(ProxOperator):
     r"""
-    L1Prox norm proximal operator.
+    L1 norm proximal operator.
 
-    The L1Prox norm promotes sparsity in the tensor.
+    The L1 norm promotes sparsity in the tensor.
 
     Attributes:
         alpha (float): Regularization strength.
@@ -19,7 +19,7 @@ class L1Prox(ProxOperator):
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
         r"""
-        Soft-thresholding for the L1Prox norm.
+        Soft-thresholding for the L1 norm.
 
         Args:
             x (torch.Tensor): Input tensor.

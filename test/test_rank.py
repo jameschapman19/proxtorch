@@ -1,6 +1,6 @@
 import torch
 
-from proxtorch.constraints import RankConstraint
+from proxtorch.constraints import Rank
 
 torch.manual_seed(0)
 
@@ -12,8 +12,8 @@ def test_rank_constraint():
     matrix = u @ v.T
     assert matrix.size() == (10, 10)
 
-    # RankConstraint for maximum rank of 3
-    constraint = RankConstraint(3)
+    # Rank for maximum rank of 3
+    constraint = Rank(3)
 
     # Test if constraint correctly identifies matrix rank
     assert not constraint(matrix)

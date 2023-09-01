@@ -7,7 +7,7 @@ import seaborn as sns
 import torch
 from nilearn.decoding.proximal_operators import _prox_tvl1
 
-from proxtorch.operators import TVL1_3DProx
+from proxtorch.operators import TVL1_3D
 
 sns.set_context("paper")
 sns.set_style("whitegrid")
@@ -33,7 +33,7 @@ for dim in dims:
         x_torch_cpu = torch.tensor(x, device="cpu", dtype=torch.float32)
         x_torch_gpu = torch.tensor(x, device=device, dtype=torch.float32)
 
-        tvl1_proxtorch = TVL1_3DProx(alpha=1.0, l1_ratio=0.5).prox
+        tvl1_proxtorch = TVL1_3D(alpha=1.0, l1_ratio=0.5).prox
 
         # Appending results to the dataframe using pd.concat()
         df = pd.concat(

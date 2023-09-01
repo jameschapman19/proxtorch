@@ -55,7 +55,7 @@ from sklearn.linear_model import Lasso
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
 
-from proxtorch.operators import L1Prox
+from proxtorch.operators import L1
 
 seed_everything(42)
 
@@ -66,7 +66,7 @@ class LassoRegression(pl.LightningModule):
         self.input_size = input_size
         self.lasso_param = lasso_param
         self.linear = nn.Linear(input_size, 1)
-        self.l1_prox = L1Prox(alpha=lasso_param)
+        self.l1_prox = L1(alpha=lasso_param)
 
     def forward(self, x):
         return self.linear(x)

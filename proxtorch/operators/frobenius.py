@@ -3,7 +3,7 @@ import torch
 from proxtorch.base import ProxOperator
 
 
-class FrobeniusProx(ProxOperator):
+class Frobenius(ProxOperator):
     r"""
     Proximal operator for the Frobenius norm regularization.
 

@@ -1,14 +1,14 @@
 import torch
 
-from proxtorch.constraints import FrobeniusConstraint
-from proxtorch.operators import FrobeniusProx
+from proxtorch.constraints import Frobenius
+from proxtorch.operators import Frobenius
 
 torch.manual_seed(0)
 
 
 def test_matrixfrobeniusprox():
     alpha = 0.1
-    prox = FrobeniusProx(alpha=alpha)
+    prox = Frobenius(alpha=alpha)
     x = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
     result = prox.prox(x, 1)
     expected = x / (1.0 + alpha)
@@ -17,7 +17,7 @@ def test_matrixfrobeniusprox():
 
 def test_matrixfrobeniusconstraint():
     alpha = 0.1
-    constraint = FrobeniusConstraint(s=alpha)
+    constraint = Frobenius(s=alpha)
     x = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
     result = constraint.prox(x)
     # Ensuring the trace norm is less than or equal to s

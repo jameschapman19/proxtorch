@@ -3,16 +3,16 @@ import torch
 from proxtorch.base import ProxOperator
 
 
-class GroupLassoProx(ProxOperator):
+class GroupLasso(ProxOperator):
     def __init__(self, alpha: float, group_sizes: list):
         r"""
-        Initialize the GroupLassoProx operator.
+        Initialize the GroupLasso operator.
 
         Args:
             alpha (float): Group Lasso regularization parameter.
             group_sizes (list): List containing the sizes of each group.
         """
-        super(GroupLassoProx, self).__init__()
+        super(GroupLasso, self).__init__()
         self.alpha = alpha
         self.group_sizes = group_sizes
 

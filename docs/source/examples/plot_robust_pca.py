@@ -32,7 +32,7 @@ import torch
 from pytorch_lightning import seed_everything
 from torch.utils.data import DataLoader, Dataset
 
-from proxtorch.operators import L1Prox, TraceNormProx
+from proxtorch.operators import L1, TraceNorm
 
 seed_everything(42)
 
@@ -44,8 +44,8 @@ class RobustPCA(pl.LightningModule):
         self.L = torch.nn.Parameter(torch.zeros(input_shape))
         self.S = torch.nn.Parameter(torch.zeros(input_shape))
         # Proximal operators
-        self.trace_norm_prox = TraceNormProx(alpha=sigma_tn)
-        self.l1_prox = L1Prox(alpha=sigma_l1)
+        self.trace_norm_prox = TraceNorm(alpha=sigma_tn)
+        self.l1_prox = L1(alpha=sigma_l1)
 
     def forward(self, x):
         return self.L + self.S

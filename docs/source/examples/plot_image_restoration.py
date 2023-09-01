@@ -32,7 +32,7 @@ proxtorch_logo = plt.imread("../proxtorch-logo.jpg")
 proxtorch_logo = 1 - np.mean(proxtorch_logo, axis=2)
 # Normalize to [0, 1]
 proxtorch_logo = (proxtorch_logo - np.min(proxtorch_logo)) / (
-        np.max(proxtorch_logo) - np.min(proxtorch_logo)
+    np.max(proxtorch_logo) - np.min(proxtorch_logo)
 )
 
 

@@ -79,7 +79,7 @@ class MatrixCompletionDataset(Dataset):
 
         # Generate a consistent mask for missing data
         self.mask = (
-                torch.rand((num_users, num_movies)) > mask_ratio
+            torch.rand((num_users, num_movies)) > mask_ratio
         )  # If mask_ratio is 0.7, 30% of entries will be known
         self.known_entries = self.Y * self.mask
 

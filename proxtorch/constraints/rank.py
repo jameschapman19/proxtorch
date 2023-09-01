@@ -44,6 +44,6 @@ class RankConstraint(Constraint):
         u, s, v = torch.svd(x)
 
         # Set singular values beyond the max_rank-th value to zero
-        s[self.max_rank:] = 0
+        s[self.max_rank :] = 0
 
         return u @ torch.diag(s) @ v.T

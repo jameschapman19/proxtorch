@@ -35,6 +35,6 @@ class FusedLassoProx(ProxOperator):
             result[i] = result[i - 1] - diff[i - 1]
         return result
 
-    def _nonsmooth(self, x: Tensor) -> float:
+    def _nonsmooth(self, x: Tensor) -> torch.Tensor:
         r"""Compute the Fused Lasso objective for a given input tensor."""
         return self.alpha * torch.sum(torch.abs(x[:-1] - x[1:]))

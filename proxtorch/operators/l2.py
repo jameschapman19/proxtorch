@@ -30,8 +30,5 @@ class L2Prox(ProxOperator):
         """
         return x / (1.0 + self.alpha * tau)
 
-    def _smooth(self, x):
-        return 0.5 * self.alpha * torch.linalg.norm(x.reshape(-1), 2) ** 2
-
     def _nonsmooth(self, x):
-        return 0
+        return 0.5 * self.alpha * torch.linalg.norm(x.reshape(-1), 2) ** 2

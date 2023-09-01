@@ -39,7 +39,8 @@ class ProxOperator:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        return 0
+        # 0 scalar on same device as x
+        return torch.Tensor([0]).to(x.device)
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         r"""Nonsmooth part of the operator.
@@ -53,7 +54,7 @@ class ProxOperator:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        return 0
+        return torch.Tensor([0]).to(x.device)
 
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
         r"""Function call to evaluate the operator.

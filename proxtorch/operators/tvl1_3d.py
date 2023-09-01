@@ -25,7 +25,6 @@ class TVL1_3DProx(ProxOperator):
 
         Args:
             alpha (float): Regularization strength.
-            shape (tuple, optional): Desired shape for the input tensor. Defaults to None.
             max_iter (int, optional): Maximum iterations for the iterative algorithm. Defaults to 50.
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
         """
@@ -185,7 +184,7 @@ class TVL1_3DProx(ProxOperator):
         return self.tvl1_from_grad(gradients) * self.alpha
 
     @staticmethod
-    def tvl1_from_grad(gradients: torch.Tensor) -> float:
+    def tvl1_from_grad(gradients: torch.Tensor) -> torch.Tensor:
         r"""
         Calculate the TV from gradients.
 

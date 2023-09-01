@@ -38,7 +38,7 @@ class ElasticNetProx(ProxOperator):
             / (1.0 + self.alpha * self.l2_ratio * tau)
         )
 
-    def _nonsmooth(self, x: torch.Tensor) -> float:
+    def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         r"""
         Compute the combined L1 and L2 regularizations.
 

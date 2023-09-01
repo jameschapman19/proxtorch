@@ -30,8 +30,5 @@ class L1Prox(ProxOperator):
         """
         return torch.sign(x) * torch.clamp(torch.abs(x) - tau * self.alpha, min=0)
 
-    def _smooth(self, x):
-        return 0
-
     def _nonsmooth(self, x):
         return self.alpha * torch.linalg.norm(x.reshape(-1), ord=1)

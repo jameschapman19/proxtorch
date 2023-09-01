@@ -1,3 +1,4 @@
+import torch
 from torch import Tensor
 
 from proxtorch.base import ProxOperator
@@ -30,7 +31,7 @@ class HuberProx(ProxOperator):
         x[cond3] = x[cond3] + tau * self.alpha * self.delta
         return x
 
-    def _nonsmooth(self, x: Tensor) -> float:
+    def _nonsmooth(self, x: Tensor) -> torch.Tensor:
         r"""Compute the Huber penalty for a given input tensor."""
         cond1 = x.abs() <= self.delta
         cond2 = ~cond1

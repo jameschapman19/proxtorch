@@ -19,8 +19,8 @@ def time_function_call(func, *args, **kwargs):
     return time.time() - start
 
 
-dims = [10, 50]
-n_repeats = 3
+dims = [10, 50, 100]
+n_repeats = 10
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -34,7 +34,7 @@ for dim in dims:
         x_torch_gpu = torch.tensor(x, device=device, dtype=torch.float32)
 
         tvl1_proxtorch = TVL1_3DProx(
-            alpha=1.0, shape=(dim, dim, dim), l1_ratio=0.5
+            alpha=1.0, l1_ratio=0.5
         ).prox
 
         # Appending results to the dataframe using pd.concat()
@@ -99,4 +99,5 @@ plt.title("Performance comparison of TV-L1 Proximal Operator solvers with Uncert
 plt.xlabel("Dimension (size of the cubic array)")
 plt.ylabel("Average Execution Time (seconds)")
 plt.tight_layout()
+plt.savefig("joss/TVL1_Benchmark.svg")
 plt.show()

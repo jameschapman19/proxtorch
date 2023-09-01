@@ -25,7 +25,7 @@ def test_converges_to_sparse_smooth():
 
     # define the proximal operator
     alpha = 10
-    l1_ratio = 0.0 # 0.5
+    l1_ratio = 0.0  # 0.5
     prox = GraphNet2DProx(alpha, l1_ratio)
 
     # define the objective function

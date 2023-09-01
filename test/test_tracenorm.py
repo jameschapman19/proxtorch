@@ -1,10 +1,9 @@
 import torch
 
-from proxtorch.constraints import TraceNorm
-from proxtorch.operators import TraceNorm
 
 
 def test_tracenormprox():
+    from proxtorch.operators import TraceNorm
     torch.manual_seed(0)
     alpha = 0.1
     prox = TraceNorm(alpha=alpha)
@@ -15,6 +14,7 @@ def test_tracenormprox():
 
 
 def test_tracenormconstraint():
+    from proxtorch.constraints import TraceNorm
     torch.manual_seed(0)
     alpha = 2.0
     constraint = TraceNorm(alpha=alpha)

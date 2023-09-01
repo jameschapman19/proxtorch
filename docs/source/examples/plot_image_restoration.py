@@ -37,10 +37,10 @@ proxtorch_logo = (proxtorch_logo - np.min(proxtorch_logo)) / (
 
 
 class TVL1Restoration(pl.LightningModule):
-    def __init__(self, lasso_param, tv_param):
+    def __init__(self, alpha, l1_ratio):
         super().__init__()
         self.restored = torch.nn.Parameter(torch.zeros(proxtorch_logo.shape))
-        self.tvl1_prox = TVL1_2DProx(alpha_l1=lasso_param, alpha_tv=tv_param)
+        self.tvl1_prox = TVL1_2DProx(alpha=alpha, l1_ratio=l1_ratio)
 
     def forward(self, x):
         return self.restored
@@ -66,10 +66,10 @@ class TVL1Restoration(pl.LightningModule):
 
 
 class TVRestoration(pl.LightningModule):
-    def __init__(self, tv_param):
+    def __init__(self, alpha):
         super().__init__()
         self.restored = torch.nn.Parameter(torch.zeros(proxtorch_logo.shape))
-        self.tv_prox = TV_2DProx(alpha=tv_param)
+        self.tv_prox = TV_2DProx(alpha=alpha)
 
     def forward(self, x):
         return self.restored
@@ -104,8 +104,8 @@ dataset = TensorDataset(
 loader = DataLoader(dataset, batch_size=1)
 
 # Model Initialization
-tv_l1_model = TVL1Restoration(lasso_param=0.01, tv_param=0.5)
-tv_model = TVRestoration(tv_param=0.5)
+tv_l1_model = TVL1Restoration(alpha=0.5, l1_ratio=0.5)
+tv_model = TVRestoration(alpha=0.5)
 
 # Training
 trainer = pl.Trainer(max_epochs=200)

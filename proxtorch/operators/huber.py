@@ -36,7 +36,7 @@ class Huber(ProxOperator):
         cond1 = x.abs() <= self.delta
         cond2 = ~cond1
         return self.alpha * (
-                0.5 * (x[cond1] ** 2).sum()
-                + self.delta * x[cond2].abs().sum()
-                - 0.5 * self.delta ** 2 * cond2.float().sum()
+            0.5 * (x[cond1] ** 2).sum()
+            + self.delta * x[cond2].abs().sum()
+            - 0.5 * self.delta**2 * cond2.float().sum()
         )

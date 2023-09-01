@@ -16,7 +16,7 @@ class GraphNet3DProx(TVL1_3DProx):
         grad = self.gradient(x)[:-1]
         # norm of the gradient
         norm = torch.norm(grad)**2
-        return norm * self.alpha * (1 - self.l1_ratio)
+        return 0.5* norm * self.alpha * (1 - self.l1_ratio)
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         l1 = self.l1_prox(x)

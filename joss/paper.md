@@ -85,7 +85,7 @@ different computational environments.
 focus: the Total Variation-L1 (TVL1) proximal operator, prized in imaging for preserving edges and promoting sparsity.
 We assessed performance on CPUs and GPUs across varying input dimensions.
 
-![TVL1 Benchmark Results](joss/TVL1_Benchmark.svg)
+![TVL1 Benchmark Results](TVL1_Benchmark.svg)
 
 Key observations:
 

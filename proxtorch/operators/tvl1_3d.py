@@ -179,14 +179,11 @@ class TVL1_3D(ProxOperator):
 
         Notes
         -----
-        The principle of total variation denoising is explained in
+        Total variation denoising aims to minimize the total variation of the image,
+        which can be roughly described as the integral of the norm of the image gradient.
+        As a result, it produces "cartoon-like" images, i.e., piecewise-constant images.
+        For more details, refer to:
         http://en.wikipedia.org/wiki/Total_variation_denoising
-
-        The principle of total variation denoising is to minimize the
-        total variation of the image, which can be roughly described as
-        the integral of the norm of the image gradient. Total variation
-        denoising tends to produce "cartoon-like" images, that is,
-        piecewise-constant images.
 
         This function implements the FISTA (Fast Iterative Shrinkage
         Thresholding Algorithm) algorithm of Beck et Teboulle, adapted to
@@ -194,9 +191,53 @@ class TVL1_3D(ProxOperator):
         constrained total variation image denoising and deblurring problems"
         (2009).
 
-        For details on implementing the bound constraints, read the aforementioned
-        Beck and Teboulle paper.
+        For more on bound constraints implementation, see the aforementioned Beck and Teboulle paper.
         """
+        fista = True
+        weight = self.alpha * lr
+        input_shape = x.shape
+        input_img_norm = torch.norm(x) ** 2
+        lipschitz_constant = 1.1 * (4 * 3)
+        negated_output = -x
+        grad_aux = torch.zeros_like(self.gradient(x))
+        grad_im = torch.zeros_like(grad_aux)
+        t = 1.0
+        i = 0
+        dgap = torch.tensor(float("inf")).to(x.device)
+        while i < self.max_iter:
+            # tv_prev = self.tv_from_grad(self.gradient(output))
+            grad_tmp = self.gradient(negated_output)
+            grad_tmp *= 1.0 / (lipschitz_constant * weight)
+            grad_aux += grad_tmp
+            grad_tmp = self._projector_on_tvl1_dual(grad_aux)
+
+            # Careful, in the next few lines, grad_tmp and grad_aux are a
+            # view on the same array, as _projector_on_tvl1_dual returns a view
+            # on the input array
+            t_new = 0.5 * (1 + sqrt(1 + 4 * t**2))
+            t_factor = (t - 1) / t_new
+            if fista:
+                # fista
+                grad_aux = (1 + t_factor) * grad_tmp - t_factor * grad_im
+            else:
+                # ista
+                grad_aux = grad_tmp
+            grad_im = grad_tmp
+            t = t_new
+            gap = weight * self.divergence(grad_aux)
+            negated_output = gap - x
+            if i % 4 == 0:
+                old_dgap = dgap
+                dgap = self._dual_gap_prox_tvl1(
+                    input_img_norm, -negated_output, gap, weight, l1_ratio=self.l1_ratio
+                )
+                if dgap < 5.0e-5:
+                    break
+                if old_dgap < dgap:
+                    fista = False
+            i += 1
+        output = x - weight * self.divergence(grad_im)
+        return output.reshape(input_shape)
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         """

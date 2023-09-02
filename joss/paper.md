@@ -34,7 +34,7 @@ been remarkable. Despite these significant strides, there remains an undeniable 
 by proximal gradient descent, particularly for tackling non-smooth problems. 
 
 Regrettably, the landscape of constrained
-and regularized optimization has been somewhat fragmented, with many proximal operator software tools designed to solve specific problems [@Moolekamp_Block-simultaneous_direction_method_2018][@ParsimonY], while
+and regularized optimization has been somewhat fragmented, with many proximal operator software tools designed to solve specific problems [@Moolekamp] [@ParsimonY], while
 the more modular PyProximal [@pyproximal] is limited to numpy-based environments. On the other hand, PyTorch [@paszke2019pytorch], a
 prominent deep learning framework known for its dynamic computation graph and GPU support, lacked a native integration
 with proximal operators.

@@ -32,6 +32,7 @@ def get_padding_tuple(dim_index, ndim):
     padding_tuple[-2 * dim_index - 1] = 1
     return tuple(padding_tuple)
 
+
 class TVL1_3D(ProxOperator):
     """
     Class for the 3D Total Variation proximal operator.

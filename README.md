@@ -80,6 +80,7 @@ Explore the comprehensive documentation on [Read the Docs](https://proxtorch.rea
 
 - [pyproximal](https://github.com/PyLops/pyproximal)
 - [ProxGradPyTorch](https://github.com/KentonMurray/ProxGradPytorch)
+- [nilearn](https://github.com/nilearn/nilearn/blob/321494420f95c7a5e2172108400194b37a02e628/nilearn/decoding/proximal_operators.py)
 
 We're thrilled to introduce `ProxTorch` as an exciting addition to the PyTorch ecosystem. We're confident you'll love
 it!
@@ -90,6 +91,6 @@ Got ideas? Join our vibrant community and make `ProxTorch` even better!
 
 ## 📜 **License**
 
-`ProxTorch` is proudly released under the [MIT License](link-to-license-file).
+`ProxTorch` is proudly released under the [MIT License](LICENSE).
 
 ```

@@ -28,11 +28,20 @@ speed, efficiency, and seamless GPU integration.
 
 ## 🛠 **Installation**
 
-Getting started with `ProxTorch` is a breeze:
+Getting started with `ProxTorch` is a breeze. Install from PyPI with:
 
 ```bash
 pip install proxtorch
 ```
+
+Or install from source with:
+
+```bash
+git clone
+cd ProxTorch
+pip install -e .
+```
+
 
 ## 🚀 **Quick Start**
 

@@ -41,9 +41,9 @@ class TVL1_3D(ProxOperator):
     def __init__(
         self,
         alpha: float,
+        l1_ratio=0.0,
         max_iter: int = 200,
         tol: float = 1e-4,
-        l1_ratio=0.0,
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.

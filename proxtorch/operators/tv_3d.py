@@ -11,4 +11,4 @@ class TV_3D(TVL1_3D):
             max_iter (int, optional): Maximum iterations for the iterative algorithm. Defaults to 50.
             tol (float, optional): Tolerance level for early stopping. Defaults to 1e-2.
         """
-        super().__init__(alpha, max_iter, tol, l1_ratio=0.0)
+        super().__init__(alpha, l1_ratio=0.0, max_iter=max_iter, tol=tol)

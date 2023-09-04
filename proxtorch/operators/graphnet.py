@@ -15,9 +15,9 @@ class GraphNet3D(TVL1_3D):
 
     def _smooth(self, x: torch.Tensor) -> torch.Tensor:
         # The last channel is the for the l1 norm
-        grad = self.gradient(x)[:-1]
-        # norm of the gradient
-        norm = torch.norm(grad) ** 2
+        grad = self.gradient(x)[:-1]/(1-self.l1_ratio)
+        # sum of squares of the gradients
+        norm = torch.sum(grad ** 2)
         return 0.5 * norm * self.alpha * (1 - self.l1_ratio)
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:

@@ -76,7 +76,7 @@ class TVL1_3D(ProxOperator):
             gradients[d, ...] = F.pad(
                 torch.diff(x, dim=d, n=1), pad=get_padding_tuple(d, x.dim())
             )
-        gradients[:-1] *= 1.0 - self.l1_ratio
+        gradients[:-1] *= (1.0 - self.l1_ratio)
         gradients[-1] = self.l1_ratio * x
         return gradients
 
@@ -139,7 +139,7 @@ class TVL1_3D(ProxOperator):
 
         return grad
 
-    def _dual_gap_prox_tvl1(self, input_img_norm, new, gap, weight, l1_ratio=1.0):
+    def _dual_gap_prox_tvl1(self, input_img_norm, new, gap, weight):
         """
         Compute the dual gap of total variation denoising.
 
@@ -148,7 +148,6 @@ class TVL1_3D(ProxOperator):
             new (torch.Tensor): Updated tensor.
             gap (torch.Tensor): Gap tensor.
             weight (float): Regularization strength.
-            l1_ratio (float, optional): The L1 ratio. Defaults to 1.0.
 
         Returns:
             float: Dual gap value.
@@ -229,7 +228,7 @@ class TVL1_3D(ProxOperator):
             if i % 4 == 0:
                 old_dgap = dgap
                 dgap = self._dual_gap_prox_tvl1(
-                    input_img_norm, -negated_output, gap, weight, l1_ratio=self.l1_ratio
+                    input_img_norm, -negated_output, gap, weight
                 )
                 if dgap < self.tol:
                     break

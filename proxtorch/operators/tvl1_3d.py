@@ -41,9 +41,9 @@ class TVL1_3D(ProxOperator):
     def __init__(
         self,
         alpha: float,
-        l1_ratio=0.0,
+        l1_ratio=0.05,
         max_iter: int = 200,
-        tol: float = 1e-4,
+        tol: float = 5e-5,
     ) -> None:
         """
         Initialize the 3D Total Variation proximal operator.
@@ -231,7 +231,7 @@ class TVL1_3D(ProxOperator):
                 dgap = self._dual_gap_prox_tvl1(
                     input_img_norm, -negated_output, gap, weight, l1_ratio=self.l1_ratio
                 )
-                if dgap < 5.0e-5:
+                if dgap < self.tol:
                     break
                 if old_dgap < dgap:
                     fista = False

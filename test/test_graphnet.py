@@ -5,6 +5,7 @@ from proxtorch.operators import GraphNet3D, GraphNet2D
 
 def test_converges_to_sparse_smooth():
     import matplotlib.pyplot as plt
+
     torch.manual_seed(0)
 
     # generate a spatially sparse signal
@@ -39,7 +40,7 @@ def test_converges_to_sparse_smooth():
     # optimization loop
     for i in range(20000):
         optimizer.zero_grad()
-        p=prox(x)
+        p = prox(x)
         obj = objective(x) + prox(x)
         obj.backward()
         optimizer.step()

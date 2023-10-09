@@ -17,7 +17,9 @@ class MatrixL1(ProxOperator):
         super().__init__()
         self.alpha = alpha
         self.matrix = Parameter(torch.Tensor(matrix), requires_grad=False)
-        self.inv_matrix = Parameter(torch.linalg.inv(torch.Tensor(matrix)), requires_grad=False)
+        self.inv_matrix = Parameter(
+            torch.linalg.inv(torch.Tensor(matrix)), requires_grad=False
+        )
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
         r"""
@@ -30,9 +32,11 @@ class MatrixL1(ProxOperator):
         Returns:
             torch.Tensor: Resultant tensor after soft-thresholding.
         """
-        mat_x = self.matrix@ x
-        soft_thresholded = torch.sign(mat_x) * torch.clamp(torch.abs(mat_x) - tau * self.alpha, min=0)
-        return self.inv_matrix@soft_thresholded
+        mat_x = self.matrix @ x
+        soft_thresholded = torch.sign(mat_x) * torch.clamp(
+            torch.abs(mat_x) - tau * self.alpha, min=0
+        )
+        return self.inv_matrix @ soft_thresholded
 
     def _nonsmooth(self, x):
         mat_x = torch.matmul(self.matrix, x)

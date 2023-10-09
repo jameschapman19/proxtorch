@@ -12,6 +12,7 @@ class ProxOperator(nn.Module):
     Note:
         This is an abstract class and should not be instantiated directly.
     """
+
     def __init__(self):
         super().__init__()
 
@@ -86,6 +87,7 @@ class Constraint(nn.Module):
     Note:
         This is an abstract class and should not be instantiated directly.
     """
+
     def __init__(self):
         super().__init__()
 
@@ -101,8 +103,9 @@ class Constraint(nn.Module):
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        raise NotImplementedError("Subclasses must implement the 'is_satisfied' method.")
-
+        raise NotImplementedError(
+            "Subclasses must implement the 'is_satisfied' method."
+        )
 
     def prox(self, x: torch.Tensor) -> torch.Tensor:
         r"""Projects the tensor onto the feasible set defined by the constraint.

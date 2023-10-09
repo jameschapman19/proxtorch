@@ -76,7 +76,7 @@ class TVL1_3D(ProxOperator):
             gradients[d, ...] = F.pad(
                 torch.diff(x, dim=d, n=1), pad=get_padding_tuple(d, x.dim())
             )
-        gradients[:-1] *= (1.0 - self.l1_ratio)
+        gradients[:-1] *= 1.0 - self.l1_ratio
         gradients[-1] = self.l1_ratio * x
         return gradients
 

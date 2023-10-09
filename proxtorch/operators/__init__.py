@@ -12,6 +12,7 @@ from .tv_2d import TV_2D
 from .tv_3d import TV_3D
 from .tvl1_2d import TVL1_2D
 from .tvl1_3d import TVL1_3D
+from .matrix_l1 import MatrixL1
 
 __all__ = [
     "L1",
@@ -30,4 +31,5 @@ __all__ = [
     "Dummy",
     "GraphNet3D",
     "GraphNet2D",
+    "MatrixL1",
 ]

@@ -1,7 +1,8 @@
 import torch
+import torch.nn as nn
 
 
-class ProxOperator:
+class ProxOperator(nn.Module):
     r"""Base class for proximal operators in proxtorch.
 
     This class provides the basic structure and enforces the implementation
@@ -11,6 +12,8 @@ class ProxOperator:
     Note:
         This is an abstract class and should not be instantiated directly.
     """
+    def __init__(self):
+        super().__init__()
 
     def prox(self, x: torch.Tensor, tau: float) -> torch.Tensor:
         r"""Proximal mapping of the operator.
@@ -39,8 +42,8 @@ class ProxOperator:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        # 0 scalar on same device as x
-        return torch.Tensor([0]).to(x.device)
+        # return 0.0
+        return torch.tensor(0.0, device=x.device, dtype=x.dtype)
 
     def _nonsmooth(self, x: torch.Tensor) -> torch.Tensor:
         r"""Nonsmooth part of the operator.
@@ -54,9 +57,9 @@ class ProxOperator:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        return torch.Tensor([0]).to(x.device)
+        return torch.tensor(0.0, device=x.device, dtype=x.dtype)
 
-    def __call__(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         r"""Function call to evaluate the operator.
 
         Args:
@@ -73,7 +76,7 @@ class ProxOperator:
         return smooth + nonsmooth
 
 
-class Constraint:
+class Constraint(nn.Module):
     r"""Base class for constraints in proxtorch.
 
     This class provides the basic structure and enforces the implementation
@@ -83,8 +86,10 @@ class Constraint:
     Note:
         This is an abstract class and should not be instantiated directly.
     """
+    def __init__(self):
+        super().__init__()
 
-    def __call__(self, x: torch.Tensor) -> bool:
+    def forward(self, x: torch.Tensor) -> bool:
         r"""Check if the constraint is satisfied for the given tensor.
 
         Args:
@@ -96,9 +101,8 @@ class Constraint:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        raise NotImplementedError(
-            "Subclasses must implement the 'is_satisfied' method."
-        )
+        raise NotImplementedError("Subclasses must implement the 'is_satisfied' method.")
+
 
     def prox(self, x: torch.Tensor) -> torch.Tensor:
         r"""Projects the tensor onto the feasible set defined by the constraint.
@@ -112,4 +116,4 @@ class Constraint:
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
         """
-        raise NotImplementedError("Subclasses must implement the 'project' method.")
+        raise NotImplementedError("Subclasses must implement the 'prox' method.")
